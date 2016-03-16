@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/login', 'UserController@login');
-
+Route::get('/home', 'HomeController@index');
 /*
 |--------------------------------------------------------------------------
 | Application Routes

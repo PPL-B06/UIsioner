@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Route::get('/login', 'UserController@login');
 Route::get('/home', 'HomeController@index');
+Route::get('/register', 'Auth\AuthController@getRegister');
+Route::post('/register', 'Auth\AuthController@postRegister');
 /*
 |--------------------------------------------------------------------------
 | Application Routes

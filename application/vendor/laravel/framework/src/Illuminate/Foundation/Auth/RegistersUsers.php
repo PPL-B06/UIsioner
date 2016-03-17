@@ -30,7 +30,7 @@ trait RegistersUsers
             return view($this->registerView);
         }
 
-        return view('auth.register');
+        return view('/register');
     }
 
     /**

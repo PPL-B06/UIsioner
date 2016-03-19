@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Validator;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
 
 class UserController extends Controller{
     public function login(){
@@ -39,5 +40,83 @@ class UserController extends Controller{
             }
             return \Redirect::intended("/");
         }
+    }
+
+     /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getRegister()
+    {
+        return $this->showRegistrationForm();
+    }
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        if (property_exists($this, 'registerView')) {
+            return view($this->registerView);
+        }
+
+        return view('/register');
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postRegister(Request $request)
+    {
+        return $this->register($request);
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+         if ($validator->fails()) {
+            $messages = $validator->messages();
+           
+                return  \Redirect::to('/register')
+                    ->withErrors($validator)
+                    ->withInput();
+
+        } 
+
+        else {
+            return view('/register');
+        }
+
+
+        return redirect($this->redirectPath());
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    public function validator(array $data)
+    {
+       $rules = array(
+            'email' => 'required|email|max:255|unique:users',
+            'phone' => 'required|regex:/^\+?[^a-zA-Z]{5,}$/',
+        );
+
+        return $validator = Validator::make($data, $rules);
     }
 }

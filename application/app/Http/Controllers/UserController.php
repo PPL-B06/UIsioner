@@ -4,42 +4,51 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
+use Session;
+use Auth;
+use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+date_default_timezone_set('Asia/Jakarta');
 
 class UserController extends Controller{
     public function login(){
         if(\SSO\SSO::authenticate()){
             $SSO = \SSO\SSO::getUser();
-            var_dump($SSO);
             session()->regenerate();
             session()->push('username', $SSO->username);
             session()->push('name', $SSO->name);
             session()->push('npm', $SSO->npm);
-
-            //var_dump(session()->all());
-
-            echo("lala\n");
-            $email = $SSO->username . "@ui.ac.id";
-            $user = \App\User::where("name", "=", $SSO->name)->first();
-            var_dump($user);
-            echo($user);
+            $user = \App\User::where("npm", "=", $SSO->npm)->first();
 
             if($user){
-                \Auth::login($user);
-             }
-             else{
+                if($user->email){
+                    \Auth::login($user);
+                    return \Redirect::intended("/home");
+                }
+                else return \Redirect::intended("/register");
+                
+            }
+            else{
                 $newUser = new \App\User();
                 $newUser->name = $SSO->name;
-                $newUser->email = $email;
-                $newUser->save();
+                $newUser->npm = $SSO->npm;
+                $newUser->emailui = $SSO->username . "@ui.ac.id";
+                $newUser->ui_code = $SSO->org_code;
+                $newUser->role = $SSO->role;
+                $newUser->status = "ACTIVE";
 
-                // $user = \App\User::where("name", "=", "guest")->first();
-                // \Auth::login($user);
+                $newUser->save();
             }
-            return \Redirect::intended("/");
+            return \Redirect::intended("/register");
         }
+    }
+
+    public function logout(){
+        Session::flush();
+        Auth::logout();
+        \SSO\SSO::logout();
     }
 
      /**
@@ -89,7 +98,6 @@ class UserController extends Controller{
 
          if ($validator->fails()) {
             $messages = $validator->messages();
-           
                 return  \Redirect::to('/register')
                     ->withErrors($validator)
                     ->withInput();
@@ -97,7 +105,13 @@ class UserController extends Controller{
         } 
 
         else {
-            return view('/register');
+            // kalo valid masukin ke DB dan masuk ke /home
+            
+            var_dump($request->session()->all());
+
+            // DB::table('users')->where('npm', session()->get('npm'))->update('email' => $a["email"]);
+            // DB::table('users')->where('npm', session()->get('npm'))->update('hp' => $a["phone"]);
+            //return view('/home');
         }
 
 

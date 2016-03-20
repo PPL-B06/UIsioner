@@ -16,10 +16,17 @@ Route::get('/', function () {
 });
 
 Route::get('/faq', function () {
-	return view('faq');
+	return view('faq'); 
 });
 
+Route::get('/check', 'UserController@check');
 Route::get('/login', 'UserController@login');
+Route::get('/home', 'HomeController@index');
+Route::get('/logout', 'UserController@logout'); 
+Route::get('/home', [
+    'middleware' => 'auth',
+    'uses' => 'HomeController@index'
+]);
 Route::get('/home', 'HomeController@index');
 /*
 |--------------------------------------------------------------------------

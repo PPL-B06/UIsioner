@@ -16,10 +16,10 @@ class UserController extends Controller{
     public function login(){
         if(\SSO\SSO::authenticate()){
             $SSO = \SSO\SSO::getUser();
-            session()->regenerate();
-            session()->push('username', $SSO->username);
-            session()->push('name', $SSO->name);
-            session()->push('npm', $SSO->npm);
+            //session()->regenerate();
+            session()->put('username', $SSO->username);
+            session()->put('name', $SSO->name);
+            session()->put('npm', $SSO->npm);
             $user = \App\User::where("npm", "=", $SSO->npm)->first();
 
             if($user){
@@ -107,11 +107,11 @@ class UserController extends Controller{
         else {
             // kalo valid masukin ke DB dan masuk ke /home
             
-            var_dump($request->session()->all());
-
-            // DB::table('users')->where('npm', session()->get('npm'))->update('email' => $a["email"]);
-            // DB::table('users')->where('npm', session()->get('npm'))->update('hp' => $a["phone"]);
-            //return view('/home');
+            $email = $request->email;
+            $hp = $request->phone;
+            DB::table('users')->where('npm', session()->get('npm'))->update(['email' => $email]);
+            DB::table('users')->where('npm', session()->get('npm'))->update(['hp' => $hp]);
+            return view('/index');
         }
 
 

@@ -20,10 +20,6 @@ Route::get('/faq', function () {
 });
 
 Route::get('/check', 'UserController@check');
-Route::get('/home', [
-    'middleware' => 'auth',
-    'uses' => 'HomeController@index'
-]);
 /*
 |--------------------------------------------------------------------------
 | Application Routes

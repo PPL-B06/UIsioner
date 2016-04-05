@@ -16,7 +16,6 @@ class UserController extends Controller{
     public function login(){
         if(\SSO\SSO::authenticate()){
             $SSO = \SSO\SSO::getUser();
-            //session()->regenerate();
             session()->put('username', $SSO->username);
             session()->put('name', $SSO->name);
             session()->put('npm', $SSO->npm);
@@ -46,9 +45,8 @@ class UserController extends Controller{
     }
 
     public function logout(){
-        Session::flush();
         Auth::logout();
-        \SSO\SSO::logout();
+        \SSO\SSO::logout();        
     }
 
      /**
@@ -58,7 +56,17 @@ class UserController extends Controller{
      */
     public function getRegister()
     {
-        return $this->showRegistrationForm();
+        if(\SSO\SSO::authenticate()){
+            $SSO = \SSO\SSO::getUser();
+            $user = \App\User::where("npm", "=", $SSO->npm)->first();
+            if($user){
+                if($user->email) return view('index');
+                else{
+                    return $this->showRegistrationForm();
+                }   
+            }
+            else return \Redirect::intended("/login");          
+        }
     }
 
     /**
@@ -68,11 +76,11 @@ class UserController extends Controller{
      */
     public function showRegistrationForm()
     {
-        if (property_exists($this, 'registerView')) {
-            return view($this->registerView);
-        }
-
         return view('/register');
+        // if (property_exists($this, 'registerView')) {
+        //     return view($this->registerView);
+        // }
+        // return \Redirect::intended("/home");
     }
 
     /**
@@ -111,7 +119,7 @@ class UserController extends Controller{
             $hp = $request->phone;
             DB::table('users')->where('npm', session()->get('npm'))->update(['email' => $email]);
             DB::table('users')->where('npm', session()->get('npm'))->update(['hp' => $hp]);
-            return view('/index');
+            return \Redirect::intended("/home");
         }
 
 

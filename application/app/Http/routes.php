@@ -36,5 +36,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/register', 'UserController@postRegister');
 	Route::get('/login', 'UserController@login');
 	Route::get('/home', 'HomeController@index');
+	Route::get('/createform', 'FormController@create');
+	Route::post('/postform', 'FormController@post');
+	Route::get('/fillform/{formID}', 'FormController@fillform');
 	Route::get('/logout', 'UserController@logout'); 
 });

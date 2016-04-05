@@ -22,7 +22,7 @@
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="createform">Create Form</a></li>
+        <li><a href="#">Create Form</a></li>
         <li><a href="#">My Form</a></li>
         <li><a href="#">My Responses</a></li>
         <li><a href="#">&copy; 50</a></li>
@@ -42,24 +42,28 @@
       <p><a href="#">Link</a></p>-->
     </div>
     <div class="col-sm-8 text-left" style="margin-bottom:20px;"> 
-      <h3>Most Recent Form</h3>
+      <h3>Fill Form</h3>
     <hr>
-	@foreach ($forms as $form)
-    <div class="row">
-      <div class="col-xs-2">
-      <img src="{{ url('/resources/assets/images/foto.jpg') }}" class="img-responsive">
-      </div>
-      <div class="col-xs-10">
-      <h4>{{ $form->Title }}</h4>
-      <p>{{ $form->Description }}</p>
-	  <p>Filled Form : {{ $form->FilledNumber }}/{{ $form->TargetNumber }}</p>
-      <p>Number of Questions : {{ $form->QNumber }}</p>
-      <p>Rewards : {{ $form->Reward }} Coins</p>
-      <a href="{{ url('/fillform',['formID'=>$form->ID]) }}"><button class="btn btn-default pull-right">Fill Form</button></a>
-      </div>
-    </div>
-    <hr>
+	<form role="form">
+	@foreach ($questions as $question)
+	<p>{{$question->Title}}</p>
+	<!--
+	  <div class="form-group">
+		<label for="email">Email address:</label>
+		<input type="email" class="form-control" id="email">
+	  </div>
+	  <div class="form-group">
+		<label for="pwd">Password:</label>
+		<input type="password" class="form-control" id="pwd">
+	  </div>
+	  <div class="checkbox">
+		<label><input type="checkbox"> Remember me</label>
+	  </div>
+	  <button type="submit" class="btn btn-default">Submit</button>-->
+
 	@endforeach
+	</form>
+	
     
     </div>
     <div class="col-sm-2 sidenav">

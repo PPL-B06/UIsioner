@@ -1,9 +1,14 @@
 <?php
 namespace App\Http\Controllers;
-use App\Http\Controllers\Controller;
-use Session;
-use DB;
 
+use Illuminate\Http\Request;
+use Validator;
+use Session;
+use Auth;
+use DB;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use File;
 class HomeController extends Controller {
 
 	/*
@@ -20,17 +25,32 @@ class HomeController extends Controller {
 	*/
 	public function index()
 	{
+		
+		/* untuk pengambilan json
+		$path = storage_path() . "\additional-info.json";
+		$file=File::get($path);
+		$json = json_decode($file,true);
+		$json2 = $json['04.00.01.01'];
+		$json3 = $json2['faculty'];
+		*/
 		if(\SSO\SSO::authenticate()){
 			$SSO = \SSO\SSO::getUser();
 			$user = \App\User::where("npm", "=", $SSO->npm)->first();
 			if($user){
-				if($user->email) return view('index');
+				if($user->email) 
+				{
+					$userFaculty = substr(session()->get('org_code'),-5,2);
+					$forms = DB::table('form')->join('filter', 'form.ID', '=', 'filter.form_ID')->where([['filter.type','=','Faculty'],['filter.name','=',$userFaculty],])->orderBy('Time_Stamp', 'desc')->get();
+					return view('index', ['forms' => $forms,'json'=>$userFaculty]);
+				}
 				else{
 					return \Redirect::intended("/register");
-				}	
+				}    
 			}
-			else return \Redirect::intended("/login");			
-		}
+			else return \Redirect::intended("/login");            
+        }
+
+		
 	}
 	
 	public function registration()

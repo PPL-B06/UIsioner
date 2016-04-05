@@ -16,9 +16,11 @@ class UserController extends Controller{
     public function login(){
         if(\SSO\SSO::authenticate()){
             $SSO = \SSO\SSO::getUser();
+            //session()->regenerate();
             session()->put('username', $SSO->username);
             session()->put('name', $SSO->name);
             session()->put('npm', $SSO->npm);
+			session()->put('org_code', $SSO->org_code);
             $user = \App\User::where("npm", "=", $SSO->npm)->first();
 
             if($user){

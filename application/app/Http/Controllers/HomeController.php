@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use Session;
+use DB;
 
 class HomeController extends Controller {
 
@@ -18,7 +20,17 @@ class HomeController extends Controller {
 	*/
 	public function index()
 	{
-		return view('index');
+		if(\SSO\SSO::authenticate()){
+			$SSO = \SSO\SSO::getUser();
+			$user = \App\User::where("npm", "=", $SSO->npm)->first();
+			if($user){
+				if($user->email) return view('index');
+				else{
+					return \Redirect::intended("/register");
+				}	
+			}
+			else return \Redirect::intended("/login");			
+		}
 	}
 	
 	public function registration()
@@ -36,12 +48,12 @@ class HomeController extends Controller {
 			}
 			else
 			{
-			$error = 1;
-			return View::make('registration',compact('error'));
+				$error = 1;
+				return View::make('registration',compact('error'));
 			}
 		}
 		else
-		return View::make('registration',compact('error'));
+			return View::make('registration',compact('error'));
 	}
 	
 	
@@ -53,42 +65,42 @@ class HomeController extends Controller {
 	}
 	public function doLogin()
 	{
-	$error=0;
-	if($_POST)
-	{
-		
-		$userdata = array(
-			'username'     => Input::get('username'),
-			'password'  => sha1(Input::get('password'))
-			
-		);
+		$error=0;
+		if($_POST)
+		{
+
+			$userdata = array(
+				'username'     => Input::get('username'),
+				'password'  => sha1(Input::get('password'))
+
+				);
 
 		// attempt to do the login
-		if (Auth::attempt($userdata)) {
+			if (Auth::attempt($userdata)) {
 
 			// validation successful!
 			// redirect them to the secure section or whatever
 			// return Redirect::to('secure');
 			// for now we'll just echo success (even though echoing in a controller is bad)
-			
-			$user = User::find($userdata['username']);
-			Session::put('username', $user['username']);
-			Session::put('user_type', $user['user_type']);
-			
-			
-			 return Redirect::to('post');
-			 
 
-		} else {        
-			$error = 1;
+				$user = User::find($userdata['username']);
+				Session::put('username', $user['username']);
+				Session::put('user_type', $user['user_type']);
+
+
+				return Redirect::to('post');
+
+
+			} else {        
+				$error = 1;
 			// validation not successful, send back to form 
-			return View::make('welcome',compact('error'));
+				return View::make('welcome',compact('error'));
 
+			}
 		}
-	}
-	else {return view('welcome');}
+		else {return view('welcome');}
 
-	
+
 	}
 	public function doLogout()
 	{
@@ -101,16 +113,16 @@ class HomeController extends Controller {
 	{
 		if(Session::has('username'))
 		{
-		$pp = Input::file('fileToUpload');
-		$destinationPath = 'images/pp/';
-		$extension = $pp->getClientOriginalExtension();
-		$fileName = Session::get('username').'.'.$extension;
-		$pp->move($destinationPath, $fileName);
-		
-		$user = User::find(Session::get('username'));
-		$user->pppath = $fileName;
-		$user->save();
-		return Redirect::back();
+			$pp = Input::file('fileToUpload');
+			$destinationPath = 'images/pp/';
+			$extension = $pp->getClientOriginalExtension();
+			$fileName = Session::get('username').'.'.$extension;
+			$pp->move($destinationPath, $fileName);
+
+			$user = User::find(Session::get('username'));
+			$user->pppath = $fileName;
+			$user->save();
+			return Redirect::back();
 		}
 		else
 		{

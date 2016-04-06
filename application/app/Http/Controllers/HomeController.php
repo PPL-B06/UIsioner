@@ -40,7 +40,7 @@ class HomeController extends Controller {
 				if($user->email) 
 				{
 					$userFaculty = substr(session()->get('org_code'),-5,2);
-					$forms = DB::table('form')->join('filter', 'form.ID', '=', 'filter.form_ID')->where([['filter.type','=','Faculty'],['filter.name','=',$userFaculty],])->orderBy('Time_Stamp', 'desc')->get();
+					$forms = DB::table('form')->join('filter', 'form.ID', '=', 'filter.form_ID')->where([['filter.type','=','Faculty'],['filter.name','=',$userFaculty],])->orderBy('Time_Stamp', 'desc')->distinct()->get();
 					return view('index', ['forms' => $forms,'json'=>$userFaculty]);
 				}
 				else{

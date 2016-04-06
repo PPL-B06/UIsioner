@@ -45,17 +45,18 @@
       <h3>Most Recent Form</h3>
     <hr>
 	@foreach ($forms as $form)
+  
     <div class="row">
-      <div class="col-xs-2">
+      <!-- <div class="col-xs-2">
       <img src="{{ url('/resources/assets/images/foto.jpg') }}" class="img-responsive">
-      </div>
-      <div class="col-xs-10">
+      </div> -->
+      <div class="col-xs-12">
       <h4>{{ $form->Title }}</h4>
       <p>{{ $form->Description }}</p>
-	  <p>Filled Form : {{ $form->FilledNumber }}/{{ $form->TargetNumber }}</p>
-      <p>Number of Questions : {{ $form->QNumber }}</p>
-      <p>Rewards : {{ $form->Reward }} Coins</p>
-      <a href="{{ url('/fillform',['formID'=>$form->ID]) }}"><button class="btn btn-default pull-right">Fill Form</button></a>
+	  <p>Filled Form: {{ $form->FilledNumber }}/{{ $form->TargetNumber }}</p>
+      <p>Number of Questions: {{ $form->QNumber }}</p>
+      <p>Rewards: {{ $form->Reward }} Coins</p>
+      <a href="{{ url('/fillform',['formID'=>$form->form_ID]) }}"><button class="btn btn-primary pull-right ">Fill Form</button></a>
       </div>
     </div>
     <hr>

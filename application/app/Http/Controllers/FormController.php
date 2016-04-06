@@ -23,12 +23,12 @@ class FormController extends Controller{
     {
         if(\SSO\SSO::authenticate()){
 			$questions = DB::table('question')->where('form_ID', ''+$formID)->get();
-		
-			return view('fillform', ['questions' => $questions]);
+
+			return view('fillform', ['questions' => $questions, 'formID' => $formID]);
         }
     }
 	
-	public function post(Request $request)
+	public function postForm(Request $request)
     {
         if(\SSO\SSO::authenticate()){
 				//insert ke tabel form
@@ -58,6 +58,27 @@ class FormController extends Controller{
 					}
 				 
 				return \Redirect::intended("/home");
+				
+        }
+    }
+
+    public function postAnswer(Request $request) {
+    	if(\SSO\SSO::authenticate()){
+
+			$form = DB::table('form')->where('ID', '=', $request->formID)->first();				
+
+			//insert ke tabel question
+			$firstQID = DB::table('question')->where('form_ID', '=', $request->formID)->orderBy('ID', 'asc')->first()->ID;
+			$lastQID = $firstQID + $form->QNumber;
+			while($firstQID < $lastQID)
+			{
+				DB::table('answer')->insert([
+					['question_ID' => $firstQID, 'NPM' => session()->get('npm'), 'title' => $request->$firstQID]
+				]);
+				$firstQID++;
+			}
+			 
+			return \Redirect::intended("/home");
 				
         }
     }

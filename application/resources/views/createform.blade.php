@@ -12,11 +12,11 @@
 			node.classList.add("form-group");
 			var node1 = document.createElement("LABEL");
 			node1.classList.add("control-label");
-			node1.classList.add("col-sm-1");
+			node1.classList.add("col-sm-2");
 			node1.setAttribute("for", ""+qlength);
-			node1.appendChild(document.createTextNode(""+qlength));
+			node1.appendChild(document.createTextNode("Pertanyaan "+qlength));
 			var node2 = document.createElement("DIV");
-			node2.classList.add("col-sm-11");
+			node2.classList.add("col-sm-10");
 			var node21 = document.createElement("INPUT");
 			node21.classList.add("form-control");
 			node21.setAttribute("name", ""+qlength);
@@ -84,7 +84,7 @@
     <div class="col-sm-8 text-left" style="margin-bottom:20px;"> 
       <h3>Create Form</h3>
     <hr>
-		<form class="form-horizontal" role="form" method="POST" action="{{ url('/postform') }}">
+		<form class="form-horizontal" role="form" method="POST" action="{{ url('/postForm') }}">
 			<div id="formulir">
 			  
 			  <div class="form-group">
@@ -112,48 +112,30 @@
 				</div>
 			  </div>
 			  <div class="form-group">
-				<label>Target</label>
-				<div class="checkbox"><label><input type="checkbox" name="tar0" value="01">KEDOKTERAN</label></div>
-				<div class="checkbox"><label><input type="checkbox" name="tar1" value="02">KEDOKTERAN GIGI</label></div>
-				<div class="checkbox"><label><input type="checkbox" name="tar2" value="03">MIPA</label></div>
-				<div class="checkbox"><label><input type="checkbox" name="tar3" value="04">FISIP</label></div>
-				<div class="checkbox"><label><input type="checkbox" name="tar4" value="05">TEKNIK</label></div>
-				<div class="checkbox"><label><input type="checkbox" name="tar5" value="06">HUKUM</label></div>
-				<div class="checkbox"><label><input type="checkbox" name="tar6" value="07">EKONOMI</label></div>
-				<div class="checkbox"><label><input type="checkbox" name="tar7" value="08">FIB</label></div>
-				<div class="checkbox"><label><input type="checkbox" name="tar8" value="09">PSIKOLOGI</label></div>
-				<div class="checkbox"><label><input type="checkbox" name="tar9" value="10">FKM</label></div>
-				<div class="checkbox"><label><input type="checkbox" name="tar10" value="12">FASILKOM</label></div>
-				<div class="checkbox"><label><input type="checkbox" name="tar11" value="13">FIK</label></div>
-				<div class="checkbox"><label><input type="checkbox" name="tar12" value="14">PASCASARJANA</label></div>
-				<div class="checkbox"><label><input type="checkbox" name="tar13" value="15">VOKASI</label></div>
-				<div class="checkbox"><label><input type="checkbox" name="tar14" value="16">PEROLEHAN KREDIT</label></div>
-				<div class="checkbox"><label><input type="checkbox" name="tar15" value="17">FARMASI</label></div>
+			  	<label class="control-label col-sm-2">Target</label>
+			  	<div class="col-sm-10">
+					<div class="checkbox"><label><input type="checkbox" name="tar0" value="01">Fakultas Kedokteran</label></div>
+					<div class="checkbox"><label><input type="checkbox" name="tar1" value="02">Fakultas Kedokteran Gigi</label></div>
+					<div class="checkbox"><label><input type="checkbox" name="tar2" value="03">Fakultas Matematika & Ilmu Pengetahuan Alam</label></div>
+					<div class="checkbox"><label><input type="checkbox" name="tar3" value="04">Fakultas Ilmu Sosial & Ilmu Politik</label></div>
+					<div class="checkbox"><label><input type="checkbox" name="tar4" value="05">Fakultas Teknik</label></div>
+					<div class="checkbox"><label><input type="checkbox" name="tar5" value="06">Fakultas Hukum</label></div>
+					<div class="checkbox"><label><input type="checkbox" name="tar6" value="07">Fakultas Ekonomi & Bisnis</label></div>
+					<div class="checkbox"><label><input type="checkbox" name="tar7" value="08">Fakultas Ilmu Pengetahuan Budaya</label></div>
+					<div class="checkbox"><label><input type="checkbox" name="tar8" value="09">Fakultas Psikologi</label></div>
+					<div class="checkbox"><label><input type="checkbox" name="tar9" value="10">Fakultas Kesehatan Masyarakat</label></div>
+					<div class="checkbox"><label><input type="checkbox" name="tar10" value="12">Fakultas Ilmu Komputer</label></div>
+					<div class="checkbox"><label><input type="checkbox" name="tar11" value="13">Fakultas Ilmu Keperawatan</label></div>
+					<div class="checkbox"><label><input type="checkbox" name="tar12" value="14">Program Pascasarjana</label></div>
+					<div class="checkbox"><label><input type="checkbox" name="tar13" value="15">Program Vokasi</label></div>
+					<div class="checkbox"><label><input type="checkbox" name="tar14" value="16">Mahasiswa Pertukaran Pelajar</label></div>
+					<div class="checkbox"><label><input type="checkbox" name="tar15" value="17">Fakultas Farmasi</label></div>	
+			  	</div>
 			  </div>
-				 <!--<div class="form-group">
-				  <label for="target">Target:</label>
-				  <select class="form-control" id="target" name="target">
-					<option value="01">KEDOKTERAN</option>
-					<option value="02">KEDOKTERAN GIGI</option>
-					<option value="03">MIPA</option>
-					<option value="04">FISIP</option>
-					<option value="05">TEKNIK</option>
-					<option value="06">HUKUM</option>
-					<option value="07">EKONOMI</option>
-					<option value="08">FIB</option>
-					<option value="09">PSIKOLOGI</option>
-					<option value="10">FKM</option>
-					<option value="12">FASILKOM</option>
-					<option value="13">FIK</option>
-					<option value="14">PASCASARJANA</option>
-					<option value="15">VOKASI</option>
-					<option value="16">PEROLEHAN KREDIT</option>
-					<option value="17">FARMASI</option>
-				  </select>
-				 </div>-->
+			  <hr></hr>
 			  <div class="form-group">
-				<label class="control-label col-sm-1" for="1">1</label>
-				<div class="col-sm-11">
+				<label class="control-label col-sm-2" for="1">Pertanyaan 1</label>
+				<div class="col-sm-10">
 				  <input type="text" class="form-control" name="1" id="1" placeholder="Enter Question">
 				</div>
 			  </div>
@@ -173,7 +155,7 @@
 			  <input type="text" name="qnumber" id="qnumber" value="1" hidden>
 			  <div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-				  <button type="submit" class="btn btn-default">Submit</button>
+				  <button type="submit" class="btn btn-lg btn-success pull-right">Submit</button>
 				</div>
 			  </div>
 			  <input type="hidden" name="_token" value="{{ csrf_token() }}">

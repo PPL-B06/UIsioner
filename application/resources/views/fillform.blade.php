@@ -44,26 +44,21 @@
     <div class="col-sm-8 text-left" style="margin-bottom:20px;"> 
       <h3>Fill Form</h3>
     <hr>
-	<form role="form">
-	@foreach ($questions as $question)
-	<p>{{$question->Title}}</p>
-	<!--
-	  <div class="form-group">
-		<label for="email">Email address:</label>
-		<input type="email" class="form-control" id="email">
-	  </div>
-	  <div class="form-group">
-		<label for="pwd">Password:</label>
-		<input type="password" class="form-control" id="pwd">
-	  </div>
-	  <div class="checkbox">
-		<label><input type="checkbox"> Remember me</label>
-	  </div>
-	  <button type="submit" class="btn btn-default">Submit</button>-->
+	<form role="form" method="POST" action="{{ url('/postAnswer') }}">
+  	@foreach ($questions as $question)
+    <label class="control-label" for="title">{{$question->Title}}</label>
+    <input type="text" name="{{ $question->ID }}" class="form-control">
+    <hr>
 
 	@endforeach
+  <input type="text" name="formID" value="{{ $formID }}" hidden>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-lg btn-success pull-right">Submit</button>
+    </div>
+  </div>
+  <input type="hidden" name="_token" value="{{ csrf_token() }}">
 	</form>
-	
     
     </div>
     <div class="col-sm-2 sidenav">

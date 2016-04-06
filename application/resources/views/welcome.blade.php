@@ -24,8 +24,6 @@
         </div>
 
         <div class="inner cover">
-            <img src="logo/logo_H.png" class="img-responsive center-block" margin-left="188 px" alt="UIsioner" width="50%">
-
             <h1 class="cover-heading">Gathering data has never been this fun.</h1>
             <p class="lead">UIsioner is a place for UI students to create questionnaire and collect data easily. Create forms and get data, or fill forms and get rewards. It's up to you.</p>
             <p class="lead">

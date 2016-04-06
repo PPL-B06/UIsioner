@@ -13,7 +13,10 @@
 	<link href="{{ url('/resources/assets/css/bootstrap.min.css') }}" rel="stylesheet">
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="{{ url('/resources/assets/css/ie10-viewport-bug-workaround.css') }}" rel="stylesheet">
-	
+
+    <Link rel="icon" href="logo/logo.png">
+
+    <link href='https://fonts.googleapis.com/css?family=Cabin:600|Catamaran:700' rel='stylesheet' type='text/css'>
 	@yield('custom-styles')
 
 </head>

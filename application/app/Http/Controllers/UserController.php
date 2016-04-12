@@ -13,10 +13,19 @@ use App\Http\Controllers\Controller;
 date_default_timezone_set('Asia/Jakarta');
 
 class UserController extends Controller{
+
+    /**
+     * Show the application SSO login form.
+     * If new user, fill the register form then redirect to home
+     * else redirect to home
+     *
+     * @return \Illuminate\Http\Response
+     */
+
     public function login(){
         if(\SSO\SSO::authenticate()){
             $SSO = \SSO\SSO::getUser();
-            //session()->regenerate();
+            
             session()->put('username', $SSO->username);
             session()->put('name', $SSO->name);
             session()->put('npm', $SSO->npm);
@@ -25,7 +34,6 @@ class UserController extends Controller{
 
             if($user){
                 if($user->email){
-                    \Auth::login($user);
                     return \Redirect::intended("/home");
                 }
                 else return \Redirect::intended("/register");
@@ -47,8 +55,13 @@ class UserController extends Controller{
     }
 
     public function logout(){
-        Auth::logout();
-        \SSO\SSO::logout();        
+        session()->flush();
+        \SSO\SSO::logout();
+    }
+
+    public function faq()
+    {
+        return view('/faq');
     }
 
      /**
@@ -62,7 +75,7 @@ class UserController extends Controller{
             $SSO = \SSO\SSO::getUser();
             $user = \App\User::where("npm", "=", $SSO->npm)->first();
             if($user){
-                if($user->email) return view('index');
+                if($user->email) return view('index'); 
                 else{
                     return $this->showRegistrationForm();
                 }   
@@ -79,10 +92,6 @@ class UserController extends Controller{
     public function showRegistrationForm()
     {
         return view('/register');
-        // if (property_exists($this, 'registerView')) {
-        //     return view($this->registerView);
-        // }
-        // return \Redirect::intended("/home");
     }
 
     /**

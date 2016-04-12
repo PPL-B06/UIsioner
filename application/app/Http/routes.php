@@ -15,10 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/faq', function () {
-	return view('faq'); 
-});
-
 Route::get('/check', 'UserController@check');
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +28,7 @@ Route::get('/check', 'UserController@check');
 */
 
 Route::group(['middleware' => ['web']], function () {  
+	Route::get('/faq', 'UserController@faq');
 	Route::get('/register', 'UserController@getRegister');
 	Route::post('/register', 'UserController@postRegister');
 	Route::get('/login', 'UserController@login');

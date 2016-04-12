@@ -13,24 +13,24 @@ use App\Http\Controllers\Controller;
 date_default_timezone_set('Asia/Jakarta');
 
 class FormController extends Controller{
-    public function create(){
-        if(\SSO\SSO::authenticate()){
-            return view('/createform');
+    public function create(){ //untuk membuat form
+        if(\SSO\SSO::authenticate()){ //jika user terauntetikasi oleh SSO
+            return view('/createform'); //redirect ke halaman createform
         }
     }
 	
-	public function fillform($formID)
+	public function fillform($formID) //untuk mengisi sebuah form
     {
-        if(\SSO\SSO::authenticate()){
-			$questions = DB::table('question')->where('form_ID', ''+$formID)->get();
+        if(\SSO\SSO::authenticate()){ //jika user terauntetikasi oleh SSO
+			$questions = DB::table('question')->where('form_ID', ''+$formID)->get(); //mengambil list pertanyaan dari sebuah form dengan id $formID
 
-			return view('fillform', ['questions' => $questions, 'formID' => $formID]);
+			return view('fillform', ['questions' => $questions, 'formID' => $formID]); //redirect ke halaman fillform
         }
     }
 	
-	public function postForm(Request $request)
+	public function postForm(Request $request) //untuk memasukan sebuah form ke database
     {
-        if(\SSO\SSO::authenticate()){
+        if(\SSO\SSO::authenticate()){ //jika user terauntetikasi oleh SSO
 				//insert ke tabel form
 				$id = DB::table('form')->insertGetId(
 					['Title' => $request->title, 'NPM' => session()->get('npm'), 'Description' => $request->description, 'TargetNumber' => $request->targetnumber, 'Reward' => $request->reward, 'Qnumber' => $request->qnumber]
@@ -47,7 +47,6 @@ class FormController extends Controller{
 				}
 				
 				//insert ke tabel filter
-				
 					for($j=0; $j < 15; $j++)
 					{
 						$temp="tar".$j;
@@ -57,14 +56,14 @@ class FormController extends Controller{
 					  }
 					}
 				 
-				return \Redirect::intended("/home");
+				return \Redirect::intended("/home"); //redirect ke controller home
 				
         }
     }
 
     public function postAnswer(Request $request) {
-    	if(\SSO\SSO::authenticate()){
-
+    	if(\SSO\SSO::authenticate()){ //jika user terauntetikasi oleh SSO
+			//mengambil row database form dengan ID $request->formID
 			$form = DB::table('form')->where('ID', '=', $request->formID)->first();				
 
 			//insert ke tabel question
@@ -78,7 +77,7 @@ class FormController extends Controller{
 				$firstQID++;
 			}
 			 
-			return \Redirect::intended("/home");
+			return \Redirect::intended("/home"); //redirect ke controller home
 				
         }
     }
@@ -91,7 +90,7 @@ class FormController extends Controller{
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    public function validator(array $data)
+    public function validator(array $data) //untuk memvalidasi email dan phone pada form registrasi
     {
        $rules = array(
             'email' => 'required|email|max:255|unique:users',

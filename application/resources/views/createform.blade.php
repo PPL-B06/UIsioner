@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{{ url('/resources/assets/css/page.css') }}">
 <script type='text/javascript'>
         function addFields(){
-			//menambahkan field baru
+			//menambahkan field baru (add Question)
 			var qlength = document.getElementById("formulir").getElementsByTagName("INPUT").length-19;
 			var node = document.createElement("DIV");
 			node.classList.add("form-group");
@@ -28,18 +28,18 @@
 			node.appendChild(node2);
 			document.getElementById("formulir").appendChild(node);
 			
-			//update value qnumber
+			//update value qnumber (update jumlah nomor pertanyaan)
 			document.getElementById("qnumber").value=qlength;
         }
 		function deleteFields(){
-			//menghilangkan field terakhir
+			//menghilangkan field terakhir (delete last)
 			var list = document.getElementById("formulir");
 			var qlength = list.getElementsByTagName("INPUT").length-19;
 			if(qlength>2)
 			{
 			list.removeChild(list.lastChild);
 			
-			//update value qnumber
+			//update value qnumber (update jumlah nomor pertanyaan)
 			document.getElementById("qnumber").value=qlength-2;
 			}
 		}

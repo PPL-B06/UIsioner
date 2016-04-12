@@ -25,7 +25,6 @@ class HomeController extends Controller {
 	*/
 	public function index()
 	{
-		
 		/* untuk pengambilan json
 		$path = storage_path() . "\additional-info.json";
 		$file=File::get($path);
@@ -33,121 +32,25 @@ class HomeController extends Controller {
 		$json2 = $json['04.00.01.01'];
 		$json3 = $json2['faculty'];
 		*/
-		if(\SSO\SSO::authenticate()){
+		if(\SSO\SSO::authenticate()){ //jika telah terautentikasi oleh SSO
 			$SSO = \SSO\SSO::getUser();
-			$user = \App\User::where("npm", "=", $SSO->npm)->first();
-			if($user){
-				if($user->email) 
-				{
-					$userFaculty = substr(session()->get('org_code'),-5,2);
+			$user = \App\User::where("npm", "=", $SSO->npm)->first(); //mengambil row database user dengan npm = $SSO->npm
+			if($user){ //jika user ada
+				if($user->email) //jika email user ada
+				{	
+					$userFaculty = substr(session()->get('org_code'),-5,2); //mengambil kode fakultas user
+					//mengambil semua form yang memiliki filter fakultas yang sama dengan kode fakultas user
 					$forms = DB::table('form')->join('filter', 'form.ID', '=', 'filter.form_ID')->where([['filter.type','=','Faculty'],['filter.name','=',$userFaculty],])->orderBy('Time_Stamp', 'desc')->distinct()->get();
-					return view('index', ['forms' => $forms,'json'=>$userFaculty]);
+					return view('index', ['forms' => $forms,'json'=>$userFaculty]); //redirect ke halaman view
 				}
-				else{
-					return \Redirect::intended("/register");
+				else{ //jika email user tidak ada
+					return \Redirect::intended("/register");//redirect ke controller register
 				}    
 			}
-			else return \Redirect::intended("/login");            
+			else return \Redirect::intended("/login");  //jika belum terautentikasi oleh SSO          
         }
 
 		
-	}
-	
-	public function registration()
-	{	
-		$error = 0;
-		if($_POST){
-			if(Input::get('test')== 'kampusbiru')
-			{
-				$user = new User;
-				$user->username =  Input::get('username');
-				$user->password = sha1(Input::get('password'));
-				$user->save();
-				
-				return Redirect::to('logout');
-			}
-			else
-			{
-				$error = 1;
-				return View::make('registration',compact('error'));
-			}
-		}
-		else
-			return View::make('registration',compact('error'));
-	}
-	
-	
-	public function showWelcome()
-	{
-		$error=0;
-		return View::make('loginaurora',compact('error'));
-		
-	}
-	public function doLogin()
-	{
-		$error=0;
-		if($_POST)
-		{
-
-			$userdata = array(
-				'username'     => Input::get('username'),
-				'password'  => sha1(Input::get('password'))
-
-				);
-
-		// attempt to do the login
-			if (Auth::attempt($userdata)) {
-
-			// validation successful!
-			// redirect them to the secure section or whatever
-			// return Redirect::to('secure');
-			// for now we'll just echo success (even though echoing in a controller is bad)
-
-				$user = User::find($userdata['username']);
-				Session::put('username', $user['username']);
-				Session::put('user_type', $user['user_type']);
-
-
-				return Redirect::to('post');
-
-
-			} else {        
-				$error = 1;
-			// validation not successful, send back to form 
-				return View::make('welcome',compact('error'));
-
-			}
-		}
-		else {return view('welcome');}
-
-
-	}
-	public function doLogout()
-	{
-		Session::flush();
-		Auth::logout();
-		return Redirect::to('/');
-	}
-	
-	public function uploading()
-	{
-		if(Session::has('username'))
-		{
-			$pp = Input::file('fileToUpload');
-			$destinationPath = 'images/pp/';
-			$extension = $pp->getClientOriginalExtension();
-			$fileName = Session::get('username').'.'.$extension;
-			$pp->move($destinationPath, $fileName);
-
-			$user = User::find(Session::get('username'));
-			$user->pppath = $fileName;
-			$user->save();
-			return Redirect::back();
-		}
-		else
-		{
-			return Redirect::to('/');
-		}
 	}
 	
 }

@@ -44,8 +44,8 @@
     <div class="col-sm-8 text-left" style="margin-bottom:20px;"> 
       <h3>Most Recent Form</h3>
     <hr>
+	<!--Membuat list form sesuai form yang ada di database-->
 	@foreach ($forms as $form)
-  
     <div class="row">
       <!-- <div class="col-xs-2">
       <img src="{{ url('/resources/assets/images/foto.jpg') }}" class="img-responsive">

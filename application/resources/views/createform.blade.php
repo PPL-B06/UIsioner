@@ -22,6 +22,8 @@
 			node21.setAttribute("name", ""+qlength);
 			node21.setAttribute("id", ""+qlength);
 			node21.setAttribute("type", "text");
+			node21.setAttribute("pattern", "^[a-zA-Z0-9-_\.]{1,127}$");
+			node21.required = true;
 			node21.setAttribute("placeholder", "Enter Question");
 			node2.appendChild(node21);
 			node.appendChild(node1);
@@ -90,25 +92,25 @@
 			  <div class="form-group">
 				<label class="control-label col-sm-2" for="title">Title</label>
 				<div class="col-sm-10">
-				  <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title">
+				  <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" pattern="^[a-zA-Z0-9-_\.]{1,127}$" required>
 				</div>
 			  </div>
 			  <div class="form-group">
 				<label class="control-label col-sm-2" for="title">Description</label>
 				<div class="col-sm-10">
-				  <input type="text" class="form-control" name="description" id="description" placeholder="Enter Description">
+				  <input type="text" class="form-control" name="description" id="description" placeholder="Enter Description" required>
 				</div>
 			  </div>
 			  <div class="form-group">
 				<label class="control-label col-sm-2" for="title">Target Number</label>
 				<div class="col-sm-10">
-				  <input type="text" class="form-control" name="targetnumber" id="targetnumber" placeholder="Enter Target Number">
+				  <input type="text" class="form-control" name="targetnumber" id="targetnumber" placeholder="Enter Target Number" pattern="^[0-9]{1,11}$" required>
 				</div>
 			  </div>
 			  <div class="form-group">
 				<label class="control-label col-sm-2" for="title">Reward</label>
 				<div class="col-sm-10">
-				  <input type="text" class="form-control" name="reward" id="reward" placeholder="Enter Reward">
+				  <input type="text" class="form-control" name="reward" id="reward" placeholder="Enter Reward" pattern="^[0-9]{1,11}$" required>
 				</div>
 			  </div>
 			  <div class="form-group">
@@ -136,7 +138,7 @@
 			  <div class="form-group">
 				<label class="control-label col-sm-2" for="1">Pertanyaan 1</label>
 				<div class="col-sm-10">
-				  <input type="text" class="form-control" name="1" id="1" placeholder="Enter Question">
+				  <input type="text" class="form-control" name="1" id="1" placeholder="Enter Question" pattern="^[a-zA-Z0-9-_\.]{1,127}$" required>
 				</div>
 			  </div>
 			</div>

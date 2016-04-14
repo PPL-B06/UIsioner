@@ -47,7 +47,7 @@
 	<form role="form" method="POST" action="{{ url('/postAnswer') }}">
   	@foreach ($questions as $question)
     <label class="control-label" for="title">{{$question->Title}}</label>
-    <input type="text" name="{{ $question->ID }}" class="form-control">
+    <input type="text" name="{{ $question->ID }}" class="form-control" pattern="^[a-zA-Z0-9-_\.]{1,127}$" required>
     <hr>
 
 	@endforeach

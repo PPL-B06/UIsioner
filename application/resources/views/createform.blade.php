@@ -22,7 +22,7 @@
 			node21.setAttribute("name", ""+qlength);
 			node21.setAttribute("id", ""+qlength);
 			node21.setAttribute("type", "text");
-			node21.setAttribute("pattern", "^[a-zA-Z0-9-_\.]{1,127}$");
+			node21.setAttribute("pattern", "([\32-\x7E]){1,127}$");
 			node21.required = true;
 			node21.setAttribute("placeholder", "Enter Question");
 			node2.appendChild(node21);
@@ -92,7 +92,7 @@
 			  <div class="form-group">
 				<label class="control-label col-sm-2" for="title">Title</label>
 				<div class="col-sm-10">
-				  <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" pattern="^[a-zA-Z0-9-_\.]{1,127}$" required>
+				  <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" pattern="([\32-\x7E]){1,127}$" required>
 				</div>
 			  </div>
 			  <div class="form-group">
@@ -138,7 +138,7 @@
 			  <div class="form-group">
 				<label class="control-label col-sm-2" for="1">Pertanyaan 1</label>
 				<div class="col-sm-10">
-				  <input type="text" class="form-control" name="1" id="1" placeholder="Enter Question" pattern="^[a-zA-Z0-9-_\.]{1,127}$" required>
+				  <input type="text" class="form-control" name="1" id="1" placeholder="Enter Question" pattern="([\32-\x7E]){1,127}$" required>
 				</div>
 			  </div>
 			</div>

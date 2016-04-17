@@ -76,10 +76,11 @@
 </div>
 @stop
 
-@section('footer')
-<footer class="footer">
-  <div class="container">
-    <p class="text-muted">&copy; 2016 PPL-B06</p>
-  </div>
-</footer>
+@section('custom-scripts')
+<script>
+    $(document).ready(function(){
+      $('li').removeClass('active');
+      $('#my-forms').addClass('active');
+    });
+</script>
 @stop

@@ -84,12 +84,12 @@ class FormController extends Controller{
         }
     }
 	
-   public function myform() //untuk mengisi sebuah form
+   public function getForms() //untuk mengisi sebuah form
     {
         if(\SSO\SSO::authenticate()){ //jika user terauntetikasi oleh SSO
 			$forms = DB::table('form')->where('form.npm','=',session()->get('npm'))->orderBy('Time_Stamp', 'desc')->get();
 
-			return view('myform', ['forms' => $forms]); //redirect ke halaman myform
+			return view('my-forms', ['forms' => $forms]); //redirect ke halaman myform
         }
         
     }

@@ -6,35 +6,12 @@
 <link rel="stylesheet" href="{{ url('/resources/assets/css/page.css') }}">
 @stop
 
-@section('navbar')
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-    <a class="navbar-brand" href="home">UIsioner</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class=""><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-@stop
-
 @section('content')
 <div class="container">
     <div class="row">
      <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
-        <div class="panel-heading">Register</div>
+        <div class="panel-heading">Complete your data</div>
         <div class="panel-body">
          <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
           {!! csrf_field() !!} 
@@ -79,12 +56,4 @@
   
 </div>
 </div>
-@stop
-
-@section('footer')
-<footer class="footer">
-  <div class="container">
-    <p class="text-muted">&copy; 2016 PPL-B06</p>
-  </div>
-</footer>
 @stop

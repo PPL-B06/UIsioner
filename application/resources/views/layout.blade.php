@@ -16,7 +16,7 @@
     <!-- Normalize.css makes browsers render all elements more consistently and in line with modern standards -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css" rel="stylesheet" >
 
-    <Link rel="icon" href="logo/logo.png">
+    <link rel="icon" href="logo/logo.png">
 
     <link href='https://fonts.googleapis.com/css?family=Cabin:600|Catamaran:700' rel='stylesheet' type='text/css'>
 	@yield('custom-styles')
@@ -24,11 +24,38 @@
 </head>
 <body>
 
-	@yield('navbar')
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			
+			<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>                        
+			</button>
+			<a class="navbar-brand" href="home">UIsioner</a>
+			</div>
+			
+			<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav"></ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="createform">Create Form</a></li>
+				<li><a href="#">My Form</a></li>
+				<li><a href="my-responses">My Responses</a></li>
+				<li><a href="#">&copy; 50</a></li>
+				<li class=""><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+			</ul>
+			</div>
+		</div>
+	</nav>
 	
 	@yield('content')
 
-	@yield('footer')
+	<footer class="footer">
+		<div class="container">
+			<p class="text-muted">&copy; 2016 PPL-B06</p>
+		</div>
+	</footer>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

@@ -59,8 +59,6 @@ class HomeController extends Controller {
 
 	public function getResponses()
 	{
-
-
 		$userNPM = session()->get('npm');
 		$userFaculty = substr(session()->get('org_code'),-5,2); //mengambil kode fakultas user
 

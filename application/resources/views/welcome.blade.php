@@ -16,7 +16,7 @@
         <!-- Normalize.css makes browsers render all elements more consistently and in line with modern standards -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css" rel="stylesheet" >
 
-        <Link rel="icon" href="logo/logo.png">
+        <link rel="icon" href="logo/logo.png">
 
         <link href='https://fonts.googleapis.com/css?family=Cabin:600|Catamaran:700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{{ url('/resources/assets/css/cover-page.css') }}">

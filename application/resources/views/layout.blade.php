@@ -15,6 +15,8 @@
     <link href="{{ url('/resources/assets/css/ie10-viewport-bug-workaround.css') }}" rel="stylesheet">
     <!-- Normalize.css makes browsers render all elements more consistently and in line with modern standards -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css" rel="stylesheet" >
+    <!-- Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet">
 
     <link rel="icon" href="logo/logo.png">
 
@@ -39,11 +41,11 @@
 			<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav"></ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="createform">Create Form</a></li>
-				<li><a href="#">My Form</a></li>
-				<li><a href="my-responses">My Responses</a></li>
-				<li><a href="#">&copy; 50</a></li>
-				<li class=""><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				<li id="create-form"><a href="createform"><i class="fa fa-plus" aria-hidden="true"></i> Create Form</a></li>
+				<li id="my-forms"><a href="#"><i class="fa fa-file-text" aria-hidden="true"></i> My Forms</a></li>
+				<li id="my-responses"><a href="my-responses"><i class="fa fa-paper-plane" aria-hidden="true"></i> My Responses</a></li>
+				<li id="coins"><a href="#"><i class="fa fa-database" aria-hidden="true"></i> 50</a></li>
+				<li id="logout"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			</ul>
 			</div>
 		</div>
@@ -61,5 +63,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="{{ url('/resources/assets/js/bootstrap.min.js') }}"></script>
+	@yield('custom-scripts')
 </body>
 </html>

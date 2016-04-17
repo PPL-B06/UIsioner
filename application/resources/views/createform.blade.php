@@ -149,3 +149,12 @@
   </div>
 </div>
 @stop
+
+@section('custom-scripts')
+<script>
+    $(document).ready(function(){
+      $('li').removeClass('active');
+      $('#create-form').addClass('active');
+    });
+</script>
+@stop

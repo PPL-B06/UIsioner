@@ -37,5 +37,6 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/postForm', 'FormController@postForm');
 	Route::post('/postAnswer', 'FormController@postAnswer');
 	Route::get('/fillform/{formID}', 'FormController@fillform');
-	Route::get('/logout', 'UserController@logout'); 
+	Route::get('/logout', 'UserController@logout');
+	Route::get('/my-responses', 'HomeController@getResponses');
 });

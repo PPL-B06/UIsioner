@@ -24,7 +24,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="createform">Create Form</a></li>
         <li><a href="#">My Form</a></li>
-        <li><a href="#">My Responses</a></li>
+        <li><a href="my-responses">My Responses</a></li>
         <li><a href="#">&copy; 50</a></li>
         <li class=""><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>

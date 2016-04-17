@@ -56,5 +56,17 @@ class HomeController extends Controller {
 
 		
 	}
+
+	public function getResponses()
+	{
+
+
+		$userNPM = session()->get('npm');
+		$userFaculty = substr(session()->get('org_code'),-5,2); //mengambil kode fakultas user
+
+		$resp_forms = DB::table('form')->select('answer.NPM', 'form.ID', 'form.Title', 'Description', 'TargetNumber', 'FilledNumber', 'QNumber', 'Reward', 'answer.Time_Stamp', 'form_ID', 'Type')->join('question', 'form.ID', '=', 'question.form_ID')->join('answer','question.ID','=','answer.question_ID')->where('answer.NPM','=',$userNPM)->orderBy('Time_Stamp')->distinct()->get();
+
+		return view('my-responses', ['resp_forms' => $resp_forms]);
+	}
 	
 }

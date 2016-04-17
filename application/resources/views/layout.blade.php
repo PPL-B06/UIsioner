@@ -44,12 +44,48 @@
 				<li id="create-form"><a href="createform"><i class="fa fa-plus" aria-hidden="true"></i> Create Form</a></li>
 				<li id="my-forms"><a href="#"><i class="fa fa-file-text" aria-hidden="true"></i> My Forms</a></li>
 				<li id="my-responses"><a href="my-responses"><i class="fa fa-paper-plane" aria-hidden="true"></i> My Responses</a></li>
-				<li id="coins"><a href="#"><i class="fa fa-database" aria-hidden="true"></i> 50</a></li>
+				<li id="coins" data-toggle="modal" data-target="#exampleModal"><a href="#"><i class="fa fa-database" aria-hidden="true"></i> 50</a></li>
 				<li id="logout"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			</ul>
 			</div>
 		</div>
 	</nav>
+
+	<!-- ini awal modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="exampleModalLabel">Add & Redeem Coin</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						Your coins
+						<div class="input-group input-group-lg">
+						<!-- <label for="my-coin">Coin anda</label> -->
+						<span class="input-group-addon" id="sizing-addon1">Rp</span>
+						<input type="text" class="form-control" placeholder="50" aria-describedby="sizing-addon1" readonly="">
+						</div>
+					</form>
+
+					<form>
+						<div class="input-group input-group-lg">
+							<span class="input-group-addon" id="sizing-addon1">Rp</span>
+							<input type="text" class="form-control" name="qnumber" placeholder="xxx" aria-describedby="sizing-addon1" pattern="^[0-9]{1,11}$" required>
+						</div>
+						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-primary" formaction="{{ url('/addcoin') }}">Add</button>
+							<button type="submit" class="btn btn-primary" formaction="{{ url('/redeemcoin') }}">Redeem</button>
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+    <!-- ini akhir modal -->
 	
 	@yield('content')
 
@@ -60,7 +96,7 @@
 	</footer>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="{{ url('/resources/assets/js/bootstrap.min.js') }}"></script>
 	@yield('custom-scripts')

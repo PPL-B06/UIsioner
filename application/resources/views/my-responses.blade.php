@@ -17,7 +17,7 @@
         <ul class="list-group">
           @foreach($resp_forms as $resp_form)
           <li class="list-group-item">
-            <h4>{{ $resp_form->Title }} <small>Filled on {{ date('l, F jS Y', strtotime($resp_form->Time_Stamp)) }}</small></h4>
+            <h4>{{ $resp_form->Title }} <small>filled on {{ date('l, F jS Y', strtotime($resp_form->Time_Stamp)) }}</small></h4>
           </li>
           @endforeach
         </ul>

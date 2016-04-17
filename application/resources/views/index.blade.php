@@ -53,43 +53,7 @@
     </div>
 
     <div class="col-sm-2 sidenav">
-      <!-- ini awal modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add & Redeem Coin</button>
-
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="exampleModalLabel">Add & Redeem Coin</h4>
-            </div>
-            <div class="modal-body">
-              <form>
-                Coin anda
-                <div class="input-group input-group-lg">
-                  <!-- <label for="my-coin">Coin anda</label> -->
-                  <span class="input-group-addon" id="sizing-addon1">Rp</span>
-                  <input type="text" class="form-control" placeholder="50" aria-describedby="sizing-addon1" readonly="">
-                </div>
-              </form>
-
-              <form>
-                <div class="input-group input-group-lg">
-                  <span class="input-group-addon" id="sizing-addon1">Rp</span>
-                  <input type="text" class="form-control" name="qnumber" placeholder="xxx" aria-describedby="sizing-addon1" pattern="^[0-9]{1,11}$" required>
-                </div>
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary" formaction="{{ url('/addcoin') }}">add</button>
-                  <button type="submit" class="btn btn-primary" formaction="{{ url('/redeemcoin') }}">redeem</button>
-                </div>
-              </form>
-              
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- ini akhir modal -->
+      
     </div>
   </div>
 </div>

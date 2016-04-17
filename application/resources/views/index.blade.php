@@ -17,34 +17,39 @@
     </div>
   
     <div class="col-sm-8 text-left" style="margin-bottom:20px;"> 
-      <h3>Most Recent Form</h3>
+      <h5 class="text-uppercase">Most Recent Form</h5>
       <!--Membuat list form sesuai form yang ada di database-->
       {{--var_dump($terisi)--}}
       {{--dd($forms)--}}
       {{--session()->get('npm')--}}
 
-      
+      @foreach ($forms as $form)
       <div class="panel panel-default">
-        <ul class="list-group">
-          @foreach ($forms as $form)
-          <li class="list-group-item">
-            <h4>{{ $form->Title }}</h4>
-            <p>{{ $form->Description }}</p>
-            <p>Filled Form: {{ $form->FilledNumber }}/{{ $form->TargetNumber }}</p>
-            <p>Number of Questions: {{ $form->QNumber }}</p>
-            <p>Rewards: {{ $form->Reward }} Coins</p>
-            
-            @if ($form->FilledNumber >= $form->TargetNumber)
-            <button class="btn btn-primary pull-right disabled">Completed Form</button>
-            @elseif (in_array($form->form_ID, $terisi))
-            <button class="btn btn-primary pull-right disabled">Filled Form</button>
-            @else
-            <a href="{{ url('/fillform',['formID'=>$form->form_ID]) }}"><button class="btn btn-primary pull-right ">Fill Form</button></a>
-            @endif  
-          </li>
-          @endforeach
-        </ul>
+        <div class="panel-body">
+          <h3>{{ $form->Title }}</h3>
+          <p>{{ $form->Description }}</p>
+          <div class="row">
+            <div class="col-xs-4">
+              <p>Filled Form: {{ $form->FilledNumber }}/{{ $form->TargetNumber }}</p>
+            </div>
+            <div class="col-xs-4">
+              <p>Number of Questions: {{ $form->QNumber }}</p>
+            </div>
+            <div class="col-xs-4">
+              <p>Rewards: {{ $form->Reward }} Coins</p>
+            </div>
+          </div>
+
+          @if ($form->FilledNumber >= $form->TargetNumber)
+          <button class="btn btn-primary pull-right disabled">Completed</button>
+          @elseif (in_array($form->form_ID, $terisi))
+          <button class="btn btn-success pull-right disabled"><i class="fa fa-check" aria-hidden="true"></i> Filled</button>
+          @else
+          <a href="{{ url('/fillform',['formID'=>$form->form_ID]) }}"><button class="btn btn-primary pull-right ">Fill form</button></a>
+          @endif  
+        </div>
       </div>
+      @endforeach
     </div>
 
     <div class="col-sm-2 sidenav">

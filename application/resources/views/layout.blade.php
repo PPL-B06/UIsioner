@@ -9,10 +9,12 @@
     <meta name="author" content="PPL-B06">
 	<title>UIsioner @yield('page-title')</title>
 
-	<!-- Bootstrap core CSS-->
+	<!-- Bootstrap core CSS -->
 	<link href="{{ url('/resources/assets/css/bootstrap.min.css') }}" rel="stylesheet">
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="{{ url('/resources/assets/css/ie10-viewport-bug-workaround.css') }}" rel="stylesheet">
+    <!-- Normalize.css makes browsers render all elements more consistently and in line with modern standards -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css" rel="stylesheet" >
 
     <Link rel="icon" href="logo/logo.png">
 

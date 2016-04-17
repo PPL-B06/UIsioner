@@ -9,6 +9,9 @@ use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use File;
+
+date_default_timezone_set('Asia/Jakarta');
+
 class HomeController extends Controller {
 
 	/*
@@ -55,6 +58,30 @@ class HomeController extends Controller {
         }
 
 		
+	}
+
+	public function getResponses()
+	{
+		$userNPM = session()->get('npm');
+		$userFaculty = substr(session()->get('org_code'),-5,2); //mengambil kode fakultas user
+
+		$resp_forms = DB::table('form')->select('answer.NPM', 'form.ID', 'form.Title', 'Description', 'TargetNumber', 'FilledNumber', 'QNumber', 'Reward', 'answer.Time_Stamp', 'form_ID', 'Type')->join('question', 'form.ID', '=', 'question.form_ID')->join('answer','question.ID','=','answer.question_ID')->where('answer.NPM','=',$userNPM)->orderBy('Time_Stamp')->distinct()->get();
+
+		return view('my-responses', ['resp_forms' => $resp_forms]);
+	}
+
+	public function addCoin(Request $request){
+		DB::table('coin_request')->insert([
+						['NPM' => session()->get('npm'), 'Type' => 'add', 'QNumber' => $request->qnumber]
+					]);
+		return \Redirect::intended("/home");
+	}
+
+	public function redeemCoin(Request $request){
+		DB::table('coin_request')->insert([
+						['NPM' => session()->get('npm'), 'Type' => 'redeem', 'QNumber' => $request->qnumber]
+					]);
+		return \Redirect::intended("/home");
 	}
 	
 }

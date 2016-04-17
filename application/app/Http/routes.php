@@ -28,6 +28,8 @@ Route::get('/check', 'UserController@check');
 */
 
 Route::group(['middleware' => ['web']], function () {  
+	Route::get('/addcoin', 'HomeController@addCoin');
+	Route::get('/redeemcoin', 'HomeController@redeemCoin');
 	Route::get('/faq', 'UserController@faq');
 	Route::get('/register', 'UserController@getRegister');
 	Route::post('/register', 'UserController@postRegister');

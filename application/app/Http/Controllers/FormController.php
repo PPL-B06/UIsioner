@@ -84,7 +84,33 @@ class FormController extends Controller{
         }
     }
 	
-   
+   public function myform() //untuk mengisi sebuah form
+    {
+        if(\SSO\SSO::authenticate()){ //jika user terauntetikasi oleh SSO
+			$forms = DB::table('form')->where('form.npm','=',session()->get('npm'))->orderBy('Time_Stamp', 'desc')->get();
+
+			return view('myform', ['forms' => $forms]); //redirect ke halaman myform
+        }
+        
+    }
+
+    public function result($formID) //untuk mengisi sebuah form
+    {
+        if(\SSO\SSO::authenticate()){ //jika user terauntetikasi oleh SSO
+			$questions = DB::table('question')->where('question.form_ID','=',$formID)->get();
+
+			$qlist = DB::table('question')->select('question.ID') -> where('question.form_ID','=',$formID) -> lists('question.ID');
+
+			$answers = DB::table('answer')-> join('users', 'answer.NPM' ,'=' , 'users.NPM') -> whereIn('answer.question_ID', $qlist)->get();
+
+			$form = DB::table('form')->select('QNumber') -> where('form.ID','=',$formID)->first();
+
+			$unumber = sizeof($answers) / $form->QNumber;
+
+			return view('result', ['questions' => $questions, 'answers' => $answers, 'qnumber' => ''.$form->QNumber, 'unumber' => $unumber]); //redirect ke halaman myform
+        }
+        
+    }
 
     /**
      * Get a validator for an incoming registration request.

@@ -76,7 +76,9 @@ class FormController extends Controller{
 				]);
 				$firstQID++;
 			}
-			 
+			
+			//update FilledNumber
+			DB::table('form')->where('ID', '=', $request->formID)->update(['FilledNumber' => 1+$form->FilledNumber]);
 			return \Redirect::intended("/home"); //redirect ke controller home
 				
         }

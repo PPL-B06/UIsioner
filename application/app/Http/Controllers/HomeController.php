@@ -40,7 +40,11 @@ class HomeController extends Controller {
 				{	
 					$userFaculty = substr(session()->get('org_code'),-5,2); //mengambil kode fakultas user
 					//mengambil semua form yang memiliki filter fakultas yang sama dengan kode fakultas user
-					$forms = DB::table('form')->join('filter', 'form.ID', '=', 'filter.form_ID')->where([['filter.type','=','Faculty'],['filter.name','=',$userFaculty],])->orderBy('Time_Stamp', 'desc')->distinct()->get();
+					//$forms = DB::table('form')->join('filter', 'form.ID', '=', 'filter.form_ID')->where([['filter.type','=','Faculty'],['filter.name','=',$userFaculty],])->orderBy('Time_Stamp', 'desc')->distinct()->get();
+					//$forms = DB::table('form')->select('answer.NPM','form.Title','Description','TargetNumber','FilledNumber','Qnumber','Reward','Time_Stamp','form.ID','name','filter.type')->join('filter', 'form.ID', '=', 'filter.form_ID')->join('question', 'form.ID', '=', 'question.form_ID')->leftJoin('answer','question.ID','=','answer.question_ID')->where('answer.NPM','=',session()->get('npm'))->orWhere('answer.NPM', '=',null)->where([['filter.type','=','Faculty'],['filter.name','=',$userFaculty],])->orderBy('Time_Stamp', 'desc')->distinct()->get();
+					$forms = DB::table('form')->select('answer.NPM','form.Title','Description','TargetNumber','FilledNumber','Qnumber','Reward','Time_Stamp','form.ID','name','filter.type')->join('filter', 'form.ID', '=', 'filter.form_ID')->join('question', 'form.ID', '=', 'question.form_ID')->leftJoin('answer','question.ID','=','answer.question_ID')->where([['filter.type','=','Faculty'],['filter.name','=',$userFaculty],['answer.NPM','=',session()->get('npm')]])->orWhere([['filter.type','=','Faculty'],['filter.name','=',$userFaculty],['answer.NPM','=',null]])->orderBy('Time_Stamp', 'desc')->distinct()->get();
+					
+					//select('answer.NPM','form.Title','Description','TargetNumber','FilledNumber','Qnumber','Reward','Time_Stamp','form.ID','name','filter.type')->
 					return view('index', ['forms' => $forms,'json'=>$userFaculty]); //redirect ke halaman view
 				}
 				else{ //jika email user tidak ada

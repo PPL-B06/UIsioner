@@ -45,6 +45,7 @@
       <h3>Most Recent Form</h3>
     <hr>
 	<!--Membuat list form sesuai form yang ada di database-->
+	{{--dd($forms)--}}
 	@foreach ($forms as $form)
     <div class="row">
       <!-- <div class="col-xs-2">
@@ -54,9 +55,15 @@
       <h4>{{ $form->Title }}</h4>
       <p>{{ $form->Description }}</p>
 	  <p>Filled Form: {{ $form->FilledNumber }}/{{ $form->TargetNumber }}</p>
-      <p>Number of Questions: {{ $form->QNumber }}</p>
+      <p>Number of Questions: {{ $form->Qnumber }}</p>
       <p>Rewards: {{ $form->Reward }} Coins</p>
-      <a href="{{ url('/fillform',['formID'=>$form->form_ID]) }}"><button class="btn btn-primary pull-right ">Fill Form</button></a>
+	  @if ($form->FilledNumber >= $form->TargetNumber)
+	  <button class="btn btn-primary pull-right disabled">Completed Form</button>
+	  @elseif (is_null($form->NPM))
+      <a href="{{ url('/fillform',['formID'=>$form->ID]) }}"><button class="btn btn-primary pull-right ">Fill Form</button></a>
+	  @else
+	  <button class="btn btn-primary pull-right disabled">Filled Form</button>
+	  @endif
       </div>
     </div>
     <hr>

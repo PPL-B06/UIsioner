@@ -60,7 +60,7 @@
           @elseif (in_array($form->form_ID, $terisi))
           <button class="btn btn-primary pull-right disabled"><i class="fa fa-check" aria-hidden="true"></i> Filled</button>
           @else
-          <a href="{{ url('/fillform',['formID'=>$form->form_ID]) }}"><button class="btn btn-primary pull-right "><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Fill form</button></a>
+          <a href="{{ url('/fill-form',['formID'=>$form->form_ID]) }}"><button class="btn btn-primary pull-right "><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Fill form</button></a>
           @endif  
         </div>
       </div>

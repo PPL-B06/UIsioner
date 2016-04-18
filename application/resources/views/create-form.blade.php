@@ -63,7 +63,7 @@
 
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('/postForm') }}">
+					<form class="form-horizontal" role="form" method="POST" action="{{ url('/post-form') }}">
 						<div id="formulir">
 					  
 							<div class="form-group">

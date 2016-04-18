@@ -17,7 +17,7 @@
     <div class="col-sm-8 text-left" style="margin-bottom:20px;"> 
       <h3>Fill Form</h3>
     <hr>
-	<form role="form" method="POST" action="{{ url('/postAnswer') }}">
+	<form role="form" method="POST" action="{{ url('/post-answer') }}">
   	@foreach ($questions as $question)
     <label class="control-label" for="title">{{$question->Title}}</label>
     <input type="text" name="{{ $question->ID }}" class="form-control" pattern="([\32-\x7E]){1,127}$" required>

@@ -86,8 +86,8 @@
 									</div>
 									<input type="hidden" name="_token" value="{{ csrf_token() }}">
 									<div class="modal-footer">
-										<button type="submit" class="btn btn-primary" formaction="{{ url('/addcoin') }}">Add</button>
-										<button type="submit" class="btn btn-primary" formaction="{{ url('/redeemcoin') }}">Redeem</button>
+										<button type="submit" class="btn btn-primary" formaction="{{ url('/add-coin') }}">Add</button>
+										<button type="submit" class="btn btn-primary" formaction="{{ url('/redeem-coin') }}">Redeem</button>
 									</div>
 								</form>
 								

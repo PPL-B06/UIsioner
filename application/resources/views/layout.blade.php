@@ -35,18 +35,18 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>                        
 			</button>
-			<a class="navbar-brand" href="home">UIsioner</a>
+			<a class="navbar-brand" href="{{ url('home') }}">UIsioner</a>
 			</div>
 			
 			<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav"></ul>
 			<ul class="nav navbar-nav navbar-right">
 				@if(session()->get('role') == 'admin')
-				<li id="coinrequest"><a href="coinrequest"><i class="fa fa-bell" aria-hidden="true"></i>Coin Request</a></li>
+				<li id="coin-requests"><a href="{{ url('coin-requests') }}"><i class="fa fa-bell" aria-hidden="true"></i>Coin Request</a></li>
 				@endif
-				<li id="create-form"><a href="createform"><i class="fa fa-plus" aria-hidden="true"></i> Create Form</a></li>
-				<li id="my-forms"><a href="my-forms"><i class="fa fa-file-text" aria-hidden="true"></i> My Forms</a></li>
-				<li id="my-responses"><a href="my-responses"><i class="fa fa-paper-plane" aria-hidden="true"></i> My Responses</a></li>
+				<li id="create-form"><a href="{{ url('create-form') }}"><i class="fa fa-plus" aria-hidden="true"></i> Create Form</a></li>
+				<li id="my-forms"><a href="{{ url('my-forms') }}"><i class="fa fa-file-text" aria-hidden="true"></i> My Forms</a></li>
+				<li id="my-responses"><a href="{{ url('my-responses') }}"><i class="fa fa-paper-plane" aria-hidden="true"></i> My Responses</a></li>
 				<li id="coins" data-toggle="modal" data-target="#exampleModal"><a href="#"><i class="fa fa-database" aria-hidden="true"></i> {{DB::table('users')->where('NPM','=',session()->get('npm'))->first()->coin}}</a></li>
 				<li id="logout"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			</ul>

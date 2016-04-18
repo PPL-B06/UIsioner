@@ -19,14 +19,18 @@
     <div class="col-sm-8 text-left" style="margin-bottom:20px;"> 
       <h5 class="text-uppercase">Most Recent Form</h5>
       <!--Membuat list form sesuai form yang ada di database-->
-      {{--var_dump($terisi)--}}
-      {{--dd($forms)--}}
-      {{session()->get('npm')}}
-	{{session()->get('role')}}
       @foreach ($forms as $form)
       <div class="panel panel-default">
         <div class="panel-body">
+          
           <h4>{{ $form->Title }} <small>by {{ DB::table('users')->select('name')->where('NPM','=',$form->NPM)->first()->name }}</small></h4>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <h4><span class="label label-default">{{ $form->FilledNumber }} of {{ $form->TargetNumber }} form filled</span> <span class="label label-default">{{ $form->QNumber }} questions</span> <span class="label label-default">{{ $form->Reward }} Coins</span></h4>
+            </div>
+          </div>
+
           <p id="description" style="font-size: 10pt">
           @if(strlen($form->Description) > 50)
           {{ substr($form->Description, 0, -strlen($form->Description)/1.3) . "..." }}<a href="">read more</a>
@@ -34,17 +38,6 @@
           {{ $form->Description }}
           @endif
           </p>
-          <div class="row">
-            <div class="col-xs-4">
-              <p>Filled Form: {{ $form->FilledNumber }}/{{ $form->TargetNumber }}</p>
-            </div>
-            <div class="col-xs-4">
-              <p>Number of Questions: {{ $form->QNumber }}</p>
-            </div>
-            <div class="col-xs-4">
-              <p>Rewards: {{ $form->Reward }} Coins</p>
-            </div>
-          </div>
 
           @if ($form->FilledNumber >= $form->TargetNumber)
           <button class="btn btn-primary pull-right disabled">Completed</button>

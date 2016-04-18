@@ -75,7 +75,7 @@
 									<div class="input-group input-group-lg">
 									<!-- <label for="my-coin">Coin anda</label> -->
 									<span class="input-group-addon" id="sizing-addon1">Rp</span>
-									<input type="text" class="form-control" placeholder="{{$user_coin}}" aria-describedby="sizing-addon1" readonly="">
+									<input type="text" class="form-control" placeholder="{{DB::table('users')->where('NPM','=',session()->get('npm'))->first()->coin}}" aria-describedby="sizing-addon1" readonly="">
 									</div>
 								</form>
 

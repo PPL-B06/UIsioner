@@ -109,6 +109,6 @@ class HomeController extends Controller {
 		//update status sebuah request $request menjadi approved
 		DB::table('coin_request')->where('ID', '=', $reqID)->update(['status' => 'approved']);
 		
-		return \Redirect::intended("/coinrequest");
+		return \Redirect::intended("/coin-requests");
 	}
 }

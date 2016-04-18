@@ -42,7 +42,7 @@
 			<ul class="nav navbar-nav"></ul>
 			<ul class="nav navbar-nav navbar-right">
 				@if(session()->get('role') == 'admin')
-				<li id="coin-requests"><a href="{{ url('coin-requests') }}"><i class="fa fa-bell" aria-hidden="true"></i>Coin Request</a></li>
+				<li id="coin-requests"><a href="{{ url('coin-requests') }}"><i class="fa fa-bell" aria-hidden="true"></i> Coin Requests</a></li>
 				@endif
 				<li id="create-form"><a href="{{ url('create-form') }}"><i class="fa fa-plus" aria-hidden="true"></i> Create Form</a></li>
 				<li id="my-forms"><a href="{{ url('my-forms') }}"><i class="fa fa-file-text" aria-hidden="true"></i> My Forms</a></li>

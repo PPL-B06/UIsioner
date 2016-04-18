@@ -15,35 +15,39 @@
       <p><a href="#">Link</a></p>-->
     </div>
     <div class="col-sm-8 text-left" style="margin-bottom:20px;"> 
-      <h3>Requests Log</h3>
-    <hr>
-	<table class="table table-striped">
-		<thead>
-		  <tr>
-			<th>Date Requested</th>
-			<th>Type</th>
-			<th>Number</th>
-			<th>Status</th>
-		  </tr>
-		</thead>
-		<tbody>
-		@foreach ($requests as $request)
-		  <tr>
-			<td>{{$request->Time_Stamp}}</td>
-			<td>{{$request->type}}</td>
-			<td>{{$request->QNumber}}</td>
-			<td>
-			@if($request->status==null)
-			<a href="{{ url('/approvereq',['reqID'=>$request->ID]) }}"><button class="btn btn-primary btn-xs">Approve</button></a>
-			@else
-			{{'approved'}}
-			@endif
-			</td>
-		  </tr>
-		  @endforeach
-		  
-		</tbody>
-    </table>
+		<h5 class="text-uppercase">Requests Log</h5>
+		
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<table class="table table-bordered table-striped">
+					<thead>
+					  <tr>
+						<th>Date Requested</th>
+						<th>Type</th>
+						<th>Number</th>
+						<th>Status</th>
+					  </tr>
+					</thead>
+					<tbody>
+					@foreach ($requests as $request)
+					  <tr>
+						<td>{{$request->Time_Stamp}}</td>
+						<td>{{$request->type}}</td>
+						<td>{{$request->QNumber}}</td>
+						<td>
+						@if($request->status==null)
+						<a href="{{ url('/approve-req',['reqID'=>$request->ID]) }}"><button class="btn btn-primary btn-xs">Approve</button></a>
+						@else
+						{{'approved'}}
+						@endif
+						</td>
+					  </tr>
+					  @endforeach
+					  
+					</tbody>
+			    </table>
+			</div>
+		</div>
     
     </div>
     <div class="col-sm-2 sidenav">
@@ -62,7 +66,7 @@
 <script>
     $(document).ready(function(){
       $('li').removeClass('active');
-      $('#my-forms').addClass('active');
+      $('#coin-requests').addClass('active');
     });
 </script>
 @stop

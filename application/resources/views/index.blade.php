@@ -27,7 +27,13 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <h4>{{ $form->Title }} <small>by {{ DB::table('users')->select('name')->where('NPM','=',$form->NPM)->first()->name }}</small></h4>
-          <p>{{ $form->Description }}</p>
+          <p id="description" style="font-size: 10pt">
+          @if(strlen($form->Description) > 50)
+          {{ substr($form->Description, 0, -strlen($form->Description)/1.3) . "..." }}<a href="">read more</a>
+          @else
+          {{ $form->Description }}
+          @endif
+          </p>
           <div class="row">
             <div class="col-xs-4">
               <p>Filled Form: {{ $form->FilledNumber }}/{{ $form->TargetNumber }}</p>

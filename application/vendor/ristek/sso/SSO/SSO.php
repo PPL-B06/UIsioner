@@ -103,7 +103,8 @@ class SSO
    * Logout from SSO.
    */
   public static function logout() {
-    phpCAS::logout();
+    // phpCAS::logout();
+    phpCAS::logout(array('url'=>url('/')));
   }
 
   /**

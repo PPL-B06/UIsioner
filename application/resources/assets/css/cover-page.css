@@ -27,7 +27,6 @@ a:hover {
 html,
 body {
   height: 100%;
-  background-color: #f8f8f8;
 }
 body {
   color: #333;
@@ -63,12 +62,15 @@ body {
  * Header
  */
 .masthead-brand {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: -5px;
+  width: 17%;
 }
 
 .masthead-nav > li {
   display: inline-block;
+
 }
 .masthead-nav > li + li {
   margin-left: 20px;
@@ -95,13 +97,33 @@ body {
   border-bottom-color: #fff;
 }
 
+.navbar{
+  background-color: #900000;
+}
+
+.navbar-header{
+   display: inline;
+}
+
 @media (min-width: 768px) {
   .masthead-brand {
     float: left;
+    width: 17%;
   }
   .masthead-nav {
     float: right;
   }
+}
+
+@media (min-width: 320px) {
+  .masthead-brand {
+    float: left;
+    width: 17%;
+  }
+  .masthead-nav {
+    float: right;
+  }
+
 }
 
 
@@ -131,6 +153,28 @@ body {
 /*
  * Affix and center
  */
+@media (min-width: 320px) {
+  /* Pull out the header and footer */
+  .masthead {
+    position: fixed;
+    top: 0;
+  }
+  .mastfoot {
+    position: fixed;
+    bottom: 0;
+  }
+  /* Start the vertical centering */
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
+  /* Handle the widths */
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+  }
+
+}
 
 @media (min-width: 768px) {
   /* Pull out the header and footer */
@@ -152,6 +196,7 @@ body {
   .cover-container {
     width: 100%; /* Must be percentage or pixels for horizontal alignment */
   }
+
 }
 
 @media (min-width: 992px) {

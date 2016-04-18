@@ -41,10 +41,13 @@
 			<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav"></ul>
 			<ul class="nav navbar-nav navbar-right">
+				@if(session()->get('role') == 'admin')
+				<li id="coinrequest"><a href="coinrequest"><i class="fa fa-bell" aria-hidden="true"></i>Coin Request</a></li>
+				@endif
 				<li id="create-form"><a href="createform"><i class="fa fa-plus" aria-hidden="true"></i> Create Form</a></li>
 				<li id="my-forms"><a href="my-forms"><i class="fa fa-file-text" aria-hidden="true"></i> My Forms</a></li>
 				<li id="my-responses"><a href="my-responses"><i class="fa fa-paper-plane" aria-hidden="true"></i> My Responses</a></li>
-				<li id="coins" data-toggle="modal" data-target="#exampleModal"><a href="#"><i class="fa fa-database" aria-hidden="true"></i> 50</a></li>
+				<li id="coins" data-toggle="modal" data-target="#exampleModal"><a href="#"><i class="fa fa-database" aria-hidden="true"></i> {{$user_coin}}</a></li>
 				<li id="logout"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			</ul>
 			</div>
@@ -57,29 +60,75 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="exampleModalLabel">Add & Redeem Coin</h4>
+					<h4 class="modal-title" id="exampleModalLabel">My Coin</h4>
 				</div>
 				<div class="modal-body">
-					<form>
-						Your coins
-						<div class="input-group input-group-lg">
-						<!-- <label for="my-coin">Coin anda</label> -->
-						<span class="input-group-addon" id="sizing-addon1">Rp</span>
-						<input type="text" class="form-control" placeholder="50" aria-describedby="sizing-addon1" readonly="">
-						</div>
-					</form>
+					<div class="tabbable"> <!-- Only required for left/right tabs -->
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#tab1" data-toggle="tab">Add / Coin Redeem</a></li>
+							<li><a href="#tab2" data-toggle="tab">Request Log</a></li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active" id="tab1">
+								<form>
+									Your coins
+									<div class="input-group input-group-lg">
+									<!-- <label for="my-coin">Coin anda</label> -->
+									<span class="input-group-addon" id="sizing-addon1">Rp</span>
+									<input type="text" class="form-control" placeholder="{{$user_coin}}" aria-describedby="sizing-addon1" readonly="">
+									</div>
+								</form>
 
-					<form>
-						<div class="input-group input-group-lg">
-							<span class="input-group-addon" id="sizing-addon1">Rp</span>
-							<input type="text" class="form-control" name="qnumber" placeholder="xxx" aria-describedby="sizing-addon1" pattern="^[0-9]{1,11}$" required>
+								<form>
+									<div class="input-group input-group-lg">
+										<span class="input-group-addon" id="sizing-addon1">Rp</span>
+										<input type="text" class="form-control" name="qnumber" placeholder="xxx" aria-describedby="sizing-addon1" pattern="^[0-9]{1,11}$" required>
+									</div>
+									<input type="hidden" name="_token" value="{{ csrf_token() }}">
+									<div class="modal-footer">
+										<button type="submit" class="btn btn-primary" formaction="{{ url('/addcoin') }}">Add</button>
+										<button type="submit" class="btn btn-primary" formaction="{{ url('/redeemcoin') }}">Redeem</button>
+									</div>
+								</form>
+								
+							</div>
+							<div class="tab-pane" id="tab2">
+								<p>Request Log</p>
+								
+								<table class="table table-striped">
+									<thead>
+									  <tr>
+										<th>Date Requested</th>
+										<th>Type</th>
+										<th>Number</th>
+										<th>Status</th>
+									  </tr>
+									</thead>
+									<tbody>
+									@foreach ($coinreqs as $coinreq)
+									  <tr>
+										<td>{{$coinreq->Time_Stamp}}</td>
+										<td>{{$coinreq->type}}</td>
+										<td>{{$coinreq->QNumber}}</td>
+										<td>
+										@if($coinreq->status==null)
+										{{'not approved'}}
+										@else
+										{{'approved'}}
+										@endif
+										</td>
+									  </tr>
+									  @endforeach
+									  
+									</tbody>
+								  </table>
+								
+								
+							</div>
 						</div>
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-						<div class="modal-footer">
-							<button type="submit" class="btn btn-primary" formaction="{{ url('/addcoin') }}">Add</button>
-							<button type="submit" class="btn btn-primary" formaction="{{ url('/redeemcoin') }}">Redeem</button>
-						</div>
-					</form>
+					</div>
+				
+					
 
 				</div>
 			</div>

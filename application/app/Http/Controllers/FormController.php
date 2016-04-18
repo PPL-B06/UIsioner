@@ -15,7 +15,10 @@ date_default_timezone_set('Asia/Jakarta');
 class FormController extends Controller{
     public function create(){ //untuk membuat form
         if(\SSO\SSO::authenticate()){ //jika user terauntetikasi oleh SSO
-            return view('/createform'); //redirect ke halaman createform
+		//mengambil semua log request yang telah diisi oleh user dan coin user
+					$coinreqs = DB::table('coin_request')->where('NPM','=',session()->get('npm'))->get();
+					$userdata = DB::table('users')->where('NPM','=',session()->get('npm'))->first();
+            return view('/createform', ['coinreqs' => $coinreqs, 'user_coin' => $userdata->coin]); //redirect ke halaman createform
         }
     }
 	
@@ -23,8 +26,10 @@ class FormController extends Controller{
     {
         if(\SSO\SSO::authenticate()){ //jika user terauntetikasi oleh SSO
 			$questions = DB::table('question')->where('form_ID', ''+$formID)->get(); //mengambil list pertanyaan dari sebuah form dengan id $formID
-
-			return view('fillform', ['questions' => $questions, 'formID' => $formID]); //redirect ke halaman fillform
+			//mengambil semua log request yang telah diisi oleh user dan coin user
+					$coinreqs = DB::table('coin_request')->where('NPM','=',session()->get('npm'))->get();
+					$userdata = DB::table('users')->where('NPM','=',session()->get('npm'))->first();
+			return view('fillform', ['questions' => $questions, 'formID' => $formID, 'coinreqs'=>$coinreqs, 'user_coin' => $userdata->coin]); //redirect ke halaman fillform
         }
     }
 	
@@ -88,8 +93,12 @@ class FormController extends Controller{
     {
         if(\SSO\SSO::authenticate()){ //jika user terauntetikasi oleh SSO
 			$forms = DB::table('form')->where('form.npm','=',session()->get('npm'))->orderBy('Time_Stamp', 'desc')->get();
-
-			return view('my-forms', ['forms' => $forms]); //redirect ke halaman myform
+			
+			//mengambil semua log request yang telah diisi oleh user dan coin user
+					$coinreqs = DB::table('coin_request')->where('NPM','=',session()->get('npm'))->get();
+					$userdata = DB::table('users')->where('NPM','=',session()->get('npm'))->first();
+					
+			return view('my-forms', ['forms' => $forms, 'coinreqs' => $coinreqs, 'user_coin' => $userdata->coin]); //redirect ke halaman myform
         }
         
     }

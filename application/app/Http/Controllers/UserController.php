@@ -30,10 +30,13 @@ class UserController extends Controller{
             session()->put('name', $SSO->name);
             session()->put('npm', $SSO->npm);
 			session()->put('org_code', $SSO->org_code);
-            $user = \App\User::where("npm", "=", $SSO->npm)->first();
+            $user = DB::table('users')->where("npm", "=", $SSO->npm)->first();
+			
 
             if ($user) {
                 if($user->email){
+				session()->put('role', $user->role);
+					session()->put('tes', 'aa');
                     return \Redirect::intended("/home");
                 }
                 else return \Redirect::intended("/register");
@@ -74,7 +77,10 @@ class UserController extends Controller{
             $SSO = \SSO\SSO::getUser();
             $user = \App\User::where("npm", "=", $SSO->npm)->first();
             if($user){
-                if($user->email) return view('index'); 
+                if($user->email) {
+					session()->put('role', $user->role);
+					return \Redirect::intended("/home"); 
+				}
                 else{
                     return $this->showRegistrationForm();
                 }   

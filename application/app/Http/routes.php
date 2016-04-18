@@ -30,6 +30,7 @@ Route::get('/check', 'UserController@check');
 Route::group(['middleware' => ['web']], function () {  
 	Route::get('/addcoin', 'HomeController@addCoin');
 	Route::get('/redeemcoin', 'HomeController@redeemCoin');
+	Route::get('/coinrequest', 'HomeController@coinRequest');
 	Route::get('/faq', 'UserController@faq');
 	Route::get('/register', 'UserController@getRegister');
 	Route::post('/register', 'UserController@postRegister');
@@ -44,4 +45,5 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/logout', 'UserController@logout'); 
 	Route::get('/logout', 'UserController@logout');
 	Route::get('/my-responses', 'HomeController@getResponses');
+	Route::get('/approvereq/{reqID}', 'HomeController@approveReq');
 });

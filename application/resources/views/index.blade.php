@@ -21,8 +21,8 @@
       <!--Membuat list form sesuai form yang ada di database-->
       {{--var_dump($terisi)--}}
       {{--dd($forms)--}}
-      {{--session()->get('npm')--}}
-
+      {{session()->get('npm')}}
+	{{session()->get('role')}}
       @foreach ($forms as $form)
       <div class="panel panel-default">
         <div class="panel-body">

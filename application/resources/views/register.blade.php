@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layout-register')
 
 @section('page-title') {{ "| Register" }} @stop
 

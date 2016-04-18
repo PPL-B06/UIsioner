@@ -26,7 +26,7 @@
       @foreach ($forms as $form)
       <div class="panel panel-default">
         <div class="panel-body">
-          <h3>{{ $form->Title }}</h3>
+          <h4>{{ $form->Title }} <small>by {{ DB::table('users')->select('name')->where('NPM','=',$form->NPM)->first()->name }}</small></h4>
           <p>{{ $form->Description }}</p>
           <div class="row">
             <div class="col-xs-4">

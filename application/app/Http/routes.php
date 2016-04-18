@@ -36,10 +36,10 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/register', 'UserController@postRegister');
 	Route::get('/login', 'UserController@login');
 	Route::get('/home', 'HomeController@index');
-	Route::get('/createform', 'FormController@create');
+	Route::get('/create-form', 'FormController@create');
 	Route::post('/postForm', 'FormController@postForm');
 	Route::post('/postAnswer', 'FormController@postAnswer');
-	Route::get('/fillform/{formID}', 'FormController@fillform');
+	Route::get('/fill-form/{formID}', 'FormController@fillForm');
 	Route::get('/my-forms', 'FormController@getForms');
 	Route::get('/result/{formID}', 'FormController@result');
 	Route::get('/logout', 'UserController@logout'); 

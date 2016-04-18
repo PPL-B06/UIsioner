@@ -13,6 +13,7 @@
     <div class="col-sm-2 sidenav hidden-xs"></div>
 
     <div class="col-sm-8 text-left">
+      <h5 class="text-uppercase">My Responses</h5>
       <div class="panel panel-default">
         <ul class="list-group">
           @foreach($resp_forms as $resp_form)

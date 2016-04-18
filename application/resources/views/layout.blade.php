@@ -48,7 +48,7 @@
 				<li id="my-forms"><a href="{{ url('my-forms') }}"><i class="fa fa-file-text" aria-hidden="true"></i> My Forms</a></li>
 				<li id="my-responses"><a href="{{ url('my-responses') }}"><i class="fa fa-paper-plane" aria-hidden="true"></i> My Responses</a></li>
 				<li id="coins" data-toggle="modal" data-target="#exampleModal"><a href="#"><i class="fa fa-database" aria-hidden="true"></i> {{DB::table('users')->where('NPM','=',session()->get('npm'))->first()->coin}}</a></li>
-				<li id="logout"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				<li id="logout"><a href="{{ url('logout') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			</ul>
 			</div>
 		</div>

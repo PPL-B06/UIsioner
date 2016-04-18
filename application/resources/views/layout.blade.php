@@ -47,13 +47,13 @@
 				<li id="create-form"><a href="createform"><i class="fa fa-plus" aria-hidden="true"></i> Create Form</a></li>
 				<li id="my-forms"><a href="my-forms"><i class="fa fa-file-text" aria-hidden="true"></i> My Forms</a></li>
 				<li id="my-responses"><a href="my-responses"><i class="fa fa-paper-plane" aria-hidden="true"></i> My Responses</a></li>
-				<li id="coins" data-toggle="modal" data-target="#exampleModal"><a href="#"><i class="fa fa-database" aria-hidden="true"></i> {{$user_coin}}</a></li>
+				<li id="coins" data-toggle="modal" data-target="#exampleModal"><a href="#"><i class="fa fa-database" aria-hidden="true"></i> {{DB::table('users')->where('NPM','=',session()->get('npm'))->first()->coin}}</a></li>
 				<li id="logout"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			</ul>
 			</div>
 		</div>
 	</nav>
-
+	
 	<!-- ini awal modal -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 		<div class="modal-dialog" role="document">
@@ -105,7 +105,9 @@
 									  </tr>
 									</thead>
 									<tbody>
-									@foreach ($coinreqs as $coinreq)
+									<?php $coinreqs2 = DB::table('coin_request')->where('NPM','=',session()->get('npm'))->get(); ?>
+									
+									@foreach ($coinreqs2 as $coinreq)
 									  <tr>
 										<td>{{$coinreq->Time_Stamp}}</td>
 										<td>{{$coinreq->type}}</td>

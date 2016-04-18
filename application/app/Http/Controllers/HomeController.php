@@ -48,11 +48,9 @@ class HomeController extends Controller {
 					//mengambil semua form yang telah diisi oleh user
 					$formygudhdiisi = DB::table('answer')->select('form.ID')->join('question', 'answer.question_ID', '=', 'question.ID')->join('form','question.form_ID','=','form.ID')->where('answer.NPM','=',$userNPM)->distinct()->lists('form.ID');;
 					
-					//mengambil semua log request yang telah diisi oleh user dan coin user
-					$coinreqs = DB::table('coin_request')->where('NPM','=',session()->get('npm'))->get();
-					$userdata = DB::table('users')->where('NPM','=',session()->get('npm'))->first();
 					
-					return view('index', ['forms' => $forms,'json'=>$userFaculty, 'terisi'=> $formygudhdiisi, 'coinreqs'=>$coinreqs, 'user_coin'=>$userdata->coin]); //redirect ke halaman view
+					
+					return view('index', ['forms' => $forms,'json'=>$userFaculty, 'terisi'=> $formygudhdiisi]); //redirect ke halaman view
 				}
 				else{ //jika email user tidak ada
 					return \Redirect::intended("/register");//redirect ke controller register
@@ -70,10 +68,8 @@ class HomeController extends Controller {
 		$userFaculty = substr(session()->get('org_code'),-5,2); //mengambil kode fakultas user
 
 		$resp_forms = DB::table('form')->select('answer.NPM', 'form.ID', 'form.Title', 'Description', 'TargetNumber', 'FilledNumber', 'QNumber', 'Reward', 'answer.Time_Stamp', 'form_ID', 'Type')->join('question', 'form.ID', '=', 'question.form_ID')->join('answer','question.ID','=','answer.question_ID')->where('answer.NPM','=',$userNPM)->orderBy('Time_Stamp')->distinct()->get();
-		//mengambil semua log request yang telah diisi oleh user dan coin user
-					$coinreqs = DB::table('coin_request')->where('NPM','=',session()->get('npm'))->get();
-					$userdata = DB::table('users')->where('NPM','=',session()->get('npm'))->first();
-		return view('my-responses', ['resp_forms' => $resp_forms,'coinreqs'=>$coinreqs, 'user_coin'=>$userdata->coin]);
+		
+		return view('my-responses', ['resp_forms' => $resp_forms]);
 	}
 
 	public function addCoin(Request $request){
@@ -92,10 +88,8 @@ class HomeController extends Controller {
 	
 	public function coinRequest(){
 		$requests = DB::table('coin_request')->get();
-		//mengambil semua log request yang telah diisi oleh user dan coin user
-					$coinreqs = DB::table('coin_request')->where('NPM','=',session()->get('npm'))->get();
-					$userdata = DB::table('users')->where('NPM','=',session()->get('npm'))->first();
-		return view('coin-requests', ['requests' => $requests,'coinreqs' => $coinreqs, 'user_coin' => $userdata->coin]);
+		
+		return view('coin-requests', ['requests' => $requests]);
 		//return \Redirect::intended("/home");
 	}
 	
@@ -115,6 +109,6 @@ class HomeController extends Controller {
 		//update status sebuah request $request menjadi approved
 		DB::table('coin_request')->where('ID', '=', $reqID)->update(['status' => 'approved']);
 		
-		return \Redirect::intended("/coinrequest");
+		return \Redirect::intended("/coin-requests");
 	}
 }

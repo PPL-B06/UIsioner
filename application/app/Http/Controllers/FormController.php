@@ -15,16 +15,16 @@ date_default_timezone_set('Asia/Jakarta');
 class FormController extends Controller{
     public function create(){ //untuk membuat form
         if(\SSO\SSO::authenticate()){ //jika user terauntetikasi oleh SSO
-            return view('/createform'); //redirect ke halaman createform
+            return view('/create-form'); //redirect ke halaman createform
         }
     }
 	
-	public function fillform($formID) //untuk mengisi sebuah form
+	public function fillForm($formID) //untuk mengisi sebuah form
     {
         if(\SSO\SSO::authenticate()){ //jika user terauntetikasi oleh SSO
 			$questions = DB::table('question')->where('form_ID', ''+$formID)->get(); //mengambil list pertanyaan dari sebuah form dengan id $formID
 
-			return view('fillform', ['questions' => $questions, 'formID' => $formID]); //redirect ke halaman fillform
+			return view('fill-form', ['questions' => $questions, 'formID' => $formID]); //redirect ke halaman fillform
         }
     }
 	

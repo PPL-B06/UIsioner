@@ -18,7 +18,7 @@
     <!-- Font Awesome -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet">
 
-    <link rel="icon" href="logo/logo.png">
+    <Link rel="icon" href="resources/assets/images/logo/logo.png">
 
     <link href='https://fonts.googleapis.com/css?family=Cabin:600|Catamaran:700' rel='stylesheet' type='text/css'>
 	@yield('custom-styles')

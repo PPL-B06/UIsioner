@@ -18,7 +18,7 @@
 		<h5 class="text-uppercase">Requests Log</h5>
 		
 		<div class="panel panel-default">
-			<div class="panel-body">
+			<div class="panel-body table-responsive">
 				<table class="table table-bordered table-striped">
 					<thead>
 					  <tr>

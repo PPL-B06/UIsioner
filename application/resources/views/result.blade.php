@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('page-title') {{ "| Results" }} @stop
+@section('page-title') {{ "| Result" }} @stop
 
 @section('custom-styles')
 <link rel="stylesheet" href="{{ url('/resources/assets/css/page.css') }}">
@@ -11,9 +11,7 @@
   <div class="row content">
     
     <div class="col-sm-2 sidenav hidden-xs">
-    <!--<p><a href="#">Link</a></p>
-    <p><a href="#">Link</a></p>
-    <p><a href="#">Link</a></p>-->
+    
     </div>
   
     <div class="col-sm-8 text-left" style="margin-bottom:20px;"> 

@@ -18,38 +18,58 @@
     <!-- Font Awesome -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet">
 
-    <Link rel="icon" href="resources/assets/images/logo/logo.png">
+    <link rel="icon" href="resources/assets/images/logo/logo.png">
 
     <link href='https://fonts.googleapis.com/css?family=Cabin:600|Catamaran:700' rel='stylesheet' type='text/css'>
+	
+	<style>
+		@media screen and (min-width: 767px) {
+		    #mobile-nav {
+		        display: none;
+		    }
+		}
+
+		@media screen and (max-width: 767px) {
+		    #desktop-nav {
+		        display: none;
+		    }
+
+		    #button-text {
+		    	display: none;
+		    }
+		}
+	</style>
+
 	@yield('custom-styles')
 
 </head>
 <body>
 
-	<nav class="navbar navbar-inverse navbar-fixed-top">
+	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			
 			<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>                        
-			</button>
-			<a class="navbar-brand" href="{{ url('home') }}">UIsioner</a>
+				<a class="navbar-brand" href="{{ url('home') }}">UIsioner</a>
+				<div id="mobile-nav" class="container pull-right">
+					@include('nav-buttons')	
+				</div>
+				<button hidden type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="glyphicon glyphicon-th-list"></span>                        
+				</button>
 			</div>
-			
-			<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav"></ul>
-			<ul class="nav navbar-nav navbar-right">
-				@if(session()->get('role') == 'admin')
-				<li id="coin-requests"><a href="{{ url('coin-requests') }}"><i class="fa fa-bell" aria-hidden="true"></i> Coin Requests</a></li>
-				@endif
-				<li id="create-form"><a href="{{ url('create-form') }}"><i class="fa fa-plus" aria-hidden="true"></i> Create Form</a></li>
-				<li id="my-forms"><a href="{{ url('my-forms') }}"><i class="fa fa-file-text" aria-hidden="true"></i> My Forms</a></li>
-				<li id="my-responses"><a href="{{ url('my-responses') }}"><i class="fa fa-paper-plane" aria-hidden="true"></i> My Responses</a></li>
-				<li id="coins" data-toggle="modal" data-target="#exampleModal"><a href="#"><i class="fa fa-database" aria-hidden="true"></i> {{DB::table('users')->where('NPM','=',session()->get('npm'))->first()->coin}}</a></li>
-				<li id="logout"><a href="{{ url('logout') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-			</ul>
+
+			<div id="desktop-nav" class="navbar-collapse">
+				<div class="pull-right">
+					@include('nav-buttons')
+				</div>
+			</div>
+
+			<div class="collapse navbar-collapse" id="myNavbar" hidden>
+
+				<ul class="nav navbar-nav navbar-right" hidden>
+					<li id="coins" data-toggle="modal" data-target="#exampleModal"><a href="#"><i class="fa fa-database fa-lg fa-fw" aria-hidden="true"></i> {{DB::table('users')->where('NPM','=',session()->get('npm'))->first()->coin}}</a></li>
+				</ul>
+
 			</div>
 		</div>
 	</nav>
@@ -71,7 +91,6 @@
 						<div class="tab-content">
 							<div class="tab-pane active" id="tab1">
 								<form>
-									Your coins
 									<div class="input-group input-group-lg">
 									<!-- <label for="my-coin">Coin anda</label> -->
 									<span class="input-group-addon" id="sizing-addon1">Rp</span>
@@ -93,8 +112,6 @@
 								
 							</div>
 							<div class="tab-pane" id="tab2">
-								<p>Request Log</p>
-								
 								<table class="table table-striped">
 									<thead>
 									  <tr>

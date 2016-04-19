@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('page-title') {{ " | My Responses" }} @stop
+@section('page-title') {{ " | My responses" }} @stop
 
 @section('custom-styles')
 <link rel="stylesheet" href="{{ url('/resources/assets/css/page.css') }}">

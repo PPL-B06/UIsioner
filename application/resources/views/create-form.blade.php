@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('page-title') {{ "| Home" }} @stop
+@section('page-title') {{ "| Create form" }} @stop
 
 @section('custom-styles')
 <link rel="stylesheet" href="{{ url('/resources/assets/css/page.css') }}">

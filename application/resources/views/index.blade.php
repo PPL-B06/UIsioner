@@ -7,13 +7,11 @@
 @stop
 
 @section('content')
-<div class="container text-center">    
+<div class="container">    
   <div class="row content">
   
     <div class="col-sm-2 sidenav hidden-xs">
-    <!--<p><a href="#">Link</a></p>
-    <p><a href="#">Link</a></p>
-    <p><a href="#">Link</a></p>-->
+
     </div>
   
     <div class="col-sm-8 text-left" style="margin-bottom:20px;"> 
@@ -27,7 +25,7 @@
 
           <div class="row">
             
-            <div class="col-sm-8">
+            <div class="col-md-8">
               <p id="description" style="font-size: 10pt">
               @if(strlen($form->Description) > 50)
               {{ substr($form->Description, 0, -strlen($form->Description)/2) . "..." }}<a href="">read more</a>
@@ -37,7 +35,7 @@
               </p>    
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-md-4">
               <ul class="list-group">
                 <li class="list-group-item">
                   <span class="badge">{{ $form->FilledNumber }} of {{ $form->TargetNumber }}</span>
@@ -56,11 +54,11 @@
           </div>
 
           @if ($form->FilledNumber >= $form->TargetNumber)
-          <button class="btn btn-success pull-right disabled"><i class="fa fa-check" aria-hidden="true"></i> Completed</button>
+          <button class="btn btn-success btn-sm pull-right disabled"><i class="fa fa-check" aria-hidden="true"></i> Completed</button>
           @elseif (in_array($form->form_ID, $terisi))
-          <button class="btn btn-primary pull-right disabled"><i class="fa fa-check" aria-hidden="true"></i> Filled</button>
+          <button class="btn btn-default btn-sm pull-right disabled"><i class="fa fa-check" aria-hidden="true"></i> Filled</button>
           @else
-          <a href="{{ url('/fill-form',['formID'=>$form->form_ID]) }}"><button class="btn btn-primary pull-right "><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Fill form</button></a>
+          <a href="{{ url('/fill-form',['formID'=>$form->form_ID]) }}"><button class="btn btn-primary btn-sm pull-right "><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Fill form</button></a>
           @endif  
         </div>
       </div>

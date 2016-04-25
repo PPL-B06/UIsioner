@@ -31,18 +31,20 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/add-coin', 'HomeController@addCoin');
 	Route::get('/redeem-coin', 'HomeController@redeemCoin');
 	Route::get('/coin-requests', 'HomeController@coinRequest');
+	Route::get('/my-responses', 'HomeController@getResponses');
+	Route::get('/approve-req/{reqID}', 'HomeController@approveReq');
+	Route::get('/home', 'HomeController@index');
+
 	Route::get('/faq', 'UserController@faq');
 	Route::get('/register', 'UserController@getRegister');
 	Route::post('/register', 'UserController@postRegister');
 	Route::get('/login', 'UserController@login');
-	Route::get('/home', 'HomeController@index');
+	Route::get('/logout', 'UserController@logout');
+	
 	Route::get('/create-form', 'FormController@create');
 	Route::post('/post-form', 'FormController@postForm');
 	Route::post('/post-answer', 'FormController@postAnswer');
 	Route::get('/fill-form/{formID}', 'FormController@fillForm');
 	Route::get('/my-forms', 'FormController@getForms');
 	Route::get('/result/{formID}', 'FormController@result');
-	Route::get('/logout', 'UserController@logout');
-	Route::get('/my-responses', 'HomeController@getResponses');
-	Route::get('/approve-req/{reqID}', 'HomeController@approveReq');
 });

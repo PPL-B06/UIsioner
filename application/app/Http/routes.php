@@ -36,6 +36,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/home', 'HomeController@index');
 
 	Route::get('/faq', 'UserController@faq');
+	Route::get('/welcome', 'UserController@welcome');
 	Route::get('/register', 'UserController@getRegister');
 	Route::post('/register', 'UserController@postRegister');
 	Route::get('/login', 'UserController@login');

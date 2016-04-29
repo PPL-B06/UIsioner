@@ -18,7 +18,6 @@
 
         <link rel="icon" href="resources/assets/images/logo/logo.png">
 
-        <link href='https://fonts.googleapis.com/css?family=Cabin:600|Catamaran:700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{{ url('/resources/assets/css/cover-page.css') }}">
 
     </head>

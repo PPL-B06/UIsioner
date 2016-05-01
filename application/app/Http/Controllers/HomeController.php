@@ -76,9 +76,9 @@ class HomeController extends Controller {
 		}
 	}
 
-	public function redeemCoin(Request $request){
-		if(\SSO\SSO::authenticate()){
-			$saldo = DB::table('users')->where('NPM','=',session()->get('npm'))->first()->coin;
+	public function redeemCoin(Request $request){ //untuk melakukan request redeem coin
+		if(\SSO\SSO::authenticate()){ //cek apakah user terautentikasi
+			$saldo = DB::table('users')->where('NPM','=',session()->get('npm'))->first()->coin; //mengambil saldo user
 			if($request->qnumber <= $saldo){
 				DB::table('coin_request')->insert([
 						['NPM' => session()->get('npm'), 'Type' => 'redeem', 'QNumber' => $request->qnumber]
@@ -93,23 +93,23 @@ class HomeController extends Controller {
 		}
 	}
 	
-	public function coinRequest(){
+	public function coinRequest(){ //untuk menampilkan page coin-request (untuk admin)
 		if(\SSO\SSO::authenticate()){
-			$requests = DB::table('coin_request')->get();
-			return view('coin-requests', ['requests' => $requests]);
+			$requests = DB::table('coin_request')->get(); //mengambil semua data dari database table coin_request 
+			return view('coin-requests', ['requests' => $requests]); //menampilkan page coin-request (untuk admin), dengan memberi data request semua user
 		}
 	}
 	
-	public function approveReq($reqID) //untuk mengisi sebuah form
+	public function approveReq($reqID) //untuk mengubah status request menjadi approve serta memberikan efek yang sesuai
     {
     	if(\SSO\SSO::authenticate()){
     		//mengambil request yang memiliki ID $reqID
 			$request = DB::table('coin_request')->where('ID','=',$reqID)->first();
-			if($request->type =='add')
+			if($request->type =='add') //jika request merupakan add, maka coin user tersebut akan bertambah sesuai request
 			{
 			DB::table('users')->where('NPM','=',$request->NPM)->increment('coin', $request->QNumber);
 			}
-			elseif ($request->type == 'redeem')
+			elseif ($request->type == 'redeem') //jika request merupakan redeem, maka coin user tersebut akan berkurang sesuai request
 			{
 			DB::table('users')->where('NPM','=',$request->NPM)->decrement('coin', $request->QNumber);
 			}

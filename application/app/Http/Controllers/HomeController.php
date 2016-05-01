@@ -71,16 +71,25 @@ class HomeController extends Controller {
 			DB::table('coin_request')->insert([
 				['NPM' => session()->get('npm'), 'Type' => 'add', 'QNumber' => $request->qnumber]
 					]);
-			return \Redirect::intended("/home");
+			//redirect menuju page home dan menampilkan pesan sukses.
+			return \Redirect::intended("/home")->with('alert-success','Anda berhasil melakukan request add coin.');
 		}
 	}
 
 	public function redeemCoin(Request $request){
 		if(\SSO\SSO::authenticate()){
-			DB::table('coin_request')->insert([
+			$saldo = DB::table('users')->where('NPM','=',session()->get('npm'))->first()->coin;
+			if($request->qnumber <= $saldo){
+				DB::table('coin_request')->insert([
 						['NPM' => session()->get('npm'), 'Type' => 'redeem', 'QNumber' => $request->qnumber]
 					]);
-			return \Redirect::intended("/home");	
+				//redirect menuju page /home dan menampilkan pesan sukses.
+				return \Redirect::intended("/home")->with('alert-success','Anda berhasil melakukan redeem coin.');
+			}
+			else{
+				//redirect menuju page /home dan menampilkan pesan gagal.
+				return \Redirect::intended("/home")->with('alert','Coin anda tidak mencukupi untuk melakukan redeem coin.');
+			}
 		}
 	}
 	
@@ -108,7 +117,8 @@ class HomeController extends Controller {
 			//update status sebuah request $request menjadi approved
 			DB::table('coin_request')->where('ID', '=', $reqID)->update(['status' => 'approved']);
 			
-			return \Redirect::intended("/coin-requests");	
+			//redirect menuju page coin-requests dan menampilkan pesan sukses.
+			return \Redirect::intended("/coin-requests")->with('alert-success','Anda berhasil melakukan approval coin request.');;
     	}
 	}
 }

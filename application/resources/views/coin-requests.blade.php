@@ -14,7 +14,12 @@
       <p><a href="#">Link</a></p>
       <p><a href="#">Link</a></p>-->
     </div>
-    <div class="col-sm-8 text-left" style="margin-bottom:20px;"> 
+    <div class="col-sm-8 text-left" style="margin-bottom:20px;">
+    	@if ($alert = Session::get('alert-success'))
+        	<div class="alert alert-success">
+          	{{ $alert }}
+        	</div>
+      	@endif
 		<h5 class="text-uppercase">Requests Log</h5>
 		
 		<div class="panel panel-default">

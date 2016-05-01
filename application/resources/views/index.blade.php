@@ -15,6 +15,17 @@
     </div>
   
     <div class="col-sm-8 text-left" style="margin-bottom:20px;"> 
+
+      @if ($alert = Session::get('alert'))
+        <div class="alert alert-warning">
+          {{ $alert }}
+        </div>
+      @endif
+      @if ($alert = Session::get('alert-success'))
+        <div class="alert alert-success">
+          {{ $alert }}
+        </div>
+      @endif
       <h5 class="text-uppercase">Most Recent Form</h5>
       <!--Membuat list form sesuai form yang ada di database-->
       @foreach ($forms as $form)

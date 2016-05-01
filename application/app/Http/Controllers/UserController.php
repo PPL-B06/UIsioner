@@ -36,8 +36,8 @@ class UserController extends Controller{
             if ($user) {
                 if($user->email){
 				session()->put('role', $user->role);
-					session()->put('tes', 'aa');
-                    return \Redirect::intended("/home");
+                    //redirect menuju page /home dan menampilkan pesan sukses.
+                    return \Redirect::intended("/home")->with('alert-success','Selamat datang kembali di UIsioner!');
                 }
                 else return \Redirect::intended("/register");
                 
@@ -79,7 +79,8 @@ class UserController extends Controller{
             if($user){
                 if($user->email) {
 					session()->put('role', $user->role);
-					return \Redirect::intended("/home"); 
+                    //redirect menuju page /home dan menampilkan pesan sukses.
+					return \Redirect::intended("/home")->with('alert-success','Hi! Anda berhasil terdaftar menjadi pengguna UIsioner!');
 				}
                 else{
                     return $this->showRegistrationForm();

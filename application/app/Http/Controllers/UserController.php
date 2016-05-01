@@ -66,6 +66,11 @@ class UserController extends Controller{
         return view('/faq');
     }
 
+    public function welcome()
+    {
+        return view('/welcome');
+    }
+
      /**
      * Show the application registration form.
      *

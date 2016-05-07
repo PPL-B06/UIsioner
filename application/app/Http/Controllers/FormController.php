@@ -56,6 +56,10 @@ class FormController extends Controller{
 					  DB::table('filter')->insert([['form_ID' => $id, 'name' => $request->$temp, 'type' => 'Faculty']]);
 					  }
 					}
+				
+				//kurangi koin creator sebanyak reward x target number form
+				DB::table('users')->where('npm','=',session()->get('npm'))->decrement('coin', $request->targetnumber * $request->reward);
+				
 				//redirect menuju page home dan menampilkan pesan sukses.
 				return \Redirect::intended("/home")->with('alert-success','Selamat! Form anda berhasil dibuat.'); //redirect ke controller home
 				
@@ -80,7 +84,10 @@ class FormController extends Controller{
 			
 			//update FilledNumber
 			DB::table('form')->where('ID', '=', $request->formID)->update(['FilledNumber' => 1+$form->FilledNumber]);
-
+			
+			//tambahkan koin user sesuai reward form
+			DB::table('users')->where('npm','=',session()->get('npm'))->increment('coin', $form->Reward);
+			
 			//redirect menuju page home dan menampilkan pesan sukses.
 			return \Redirect::intended("/home")->with('alert-success','Selamat! Anda berhasil melakukan pengisian form.');
 				

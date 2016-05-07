@@ -46,6 +46,18 @@
 		document.getElementById("qnumber").value=qlength-2;
 		}
 	}
+	
+	function submitform(){
+		var usercoin = document.getElementById("hiddencoin").value;
+		var targetnum = document.getElementById("targetnumber").value;
+		var reward = document.getElementById("reward").value;
+		if(usercoin < targetnum*reward){
+		$("#alertModal").modal()  
+		return false;
+		}
+		else
+		{return true;}
+	}
 </script>
 @stop
 
@@ -59,6 +71,12 @@
 	    </div>
 
 	    <div class="col-sm-8 text-left" style="margin-bottom:20px;">
+		  @if ($alert = Session::get('alert'))
+			<div class="alert alert-warning">
+			  {{ $alert }}
+			</div>
+		  @endif
+		
 			<h5 class="text-uppercase">Create Form</h5>
 
 			<div class="panel panel-default">
@@ -131,9 +149,10 @@
 							</div>
 						</div>
 						<input type="text" name="qnumber" id="qnumber" value="1" hidden required>
+						<input type="text" name="hiddencoin" id="hiddencoin" value="{{DB::table('users')->where('NPM','=',session()->get('npm'))->first()->coin}}" hidden>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								<button type="submit" class="btn btn-lg btn-success pull-right">Submit</button>
+								<button type="submit" onClick="return submitform();" class="btn btn-lg btn-success pull-right" >Submit</button>
 							</div>
 						</div>
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -143,6 +162,26 @@
 			
 	    </div>
 	    
+		<!-- Modal -->
+		<div id="alertModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+			  
+			  <div class="modal-body">
+				
+				<p>Maaf, Coin anda tidak cukup untuk membuat form ini.</p>
+				<p>Coin anda harus sama atau lebih besar dari Reward x Jumlah Target.</p>
+				
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			  </div>
+			  
+			</div>
+
+		  </div>
+		</div>
+		
 	    <div class="col-sm-2 sidenav">
 	      <!--<div class="well">
 	        <p>ADS</p>

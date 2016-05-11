@@ -76,10 +76,10 @@ class HomeController extends Controller {
 		}
 	}
 
-	public function redeemCoin(Request $request){
-		if(\SSO\SSO::authenticate()){
-			$saldo = DB::table('users')->where('NPM','=',session()->get('npm'))->first()->coin;
-			if($request->qnumber <= $saldo){
+	public function redeemCoin(Request $request){ //untuk melakukan request redeem coin
+		if(\SSO\SSO::authenticate()){ //cek apakah user terautentikasi
+			$saldo = DB::table('users')->where('NPM','=',session()->get('npm'))->first()->coin; //mengambil saldo user
+			if($request->qnumber <= $saldo && $request->qnumber > 0){
 				DB::table('coin_request')->insert([
 						['NPM' => session()->get('npm'), 'Type' => 'redeem', 'QNumber' => $request->qnumber]
 					]);
@@ -88,7 +88,7 @@ class HomeController extends Controller {
 			}
 			else{
 				//redirect menuju page /home dan menampilkan pesan gagal.
-				return \Redirect::intended("/home")->with('alert','Coin anda tidak mencukupi untuk melakukan redeem coin.');
+				return \Redirect::intended("/home")->with('alert','Coin anda tidak valid atau tidak mencukupi untuk melakukan redeem coin.');
 			}
 		}
 	}

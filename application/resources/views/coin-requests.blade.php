@@ -34,6 +34,8 @@
 					  </tr>
 					</thead>
 					<tbody>
+					{{-- requests adalah kumpulan data request yang telah dilakukan oleh semua user --}}
+					{{-- disini menampilkan detil tiap request user --}}
 					@foreach ($requests as $request)
 					  <tr>
 						<td>{{$request->Time_Stamp}}</td>

@@ -122,8 +122,11 @@
 									  </tr>
 									</thead>
 									<tbody>
+									{{-- Mengambil semua data request yang telah dilakukan oleh user --}}
 									<?php $coinreqs2 = DB::table('coin_request')->where('NPM','=',session()->get('npm'))->get(); ?>
 									
+									{{-- coinreqs2 adalah kumpulan data request yang telah dilakukan user --}}
+									{{-- disini menampilkan detil tiap request user --}}
 									@foreach ($coinreqs2 as $coinreq)
 									  <tr>
 										<td>{{$coinreq->Time_Stamp}}</td>

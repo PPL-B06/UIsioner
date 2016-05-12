@@ -21,27 +21,28 @@
     <link rel="icon" href="resources/assets/images/logo/logo.png">
 
     <link rel="stylesheet" href="{{ url('/resources/assets/css/cover-page.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat|Lato:300' rel='stylesheet' type='text/css'>
 	@yield('custom-styles')
 
 </head>
 <body>
 	<div class="site-wrapper">
         <div class="site-wrapper-inner">
-            <div class="cover-container">
+            <div class="container">
 				<nav class="navbar navbar-default navbar-fixed-top">
-			        <div class="container-fluid">
+			        <div class="container">
 			            <div class="navbar-header"> 
-			                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			                <button type="button" class="navbar-toggle navbar-right" data-toggle="collapse" data-target="#myNavbar">
 			                    <span class="icon-bar"></span>
 			                    <span class="icon-bar"></span>
 			                    <span class="icon-bar"></span>                        
 			                </button>      
-			                <a class="masthead-brand" href="#">
-			                    <img src="resources/assets/images/logo/uisioner-logo.png" class="img-responsive navbar-left" alt="UIsioner">
+			                <a class="masthead-brand navbar-left" href="welcome">
+			                    <img src="resources/assets/images/logo/uisioner-logo.png" class="img-responsive logo-width" alt="UIsioner">
 			                </a>
 			               
 			            </div>
-			            <div class="collapse navbar-collapse" id="myNavbar">
+			            <div class="collapse navbar-collapse navbar-right" id="myNavbar">
 			                <ul class="nav masthead-nav ">
 			               		@yield('active')
 			                    
@@ -54,11 +55,11 @@
         	 </div>
         </div>
     </div>
-	 <div class="mastfoot">
+	 <footer class="mastfoot">
         <div class="inner">
             <p>&copy; 2016 PPL-B06</p>
         </div>
-    </div>
+    </footer>
 
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

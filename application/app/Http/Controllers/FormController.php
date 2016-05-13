@@ -28,6 +28,15 @@ class FormController extends Controller{
 			return view('fill-form', ['questions' => $questions, 'formID' => $formID]); //redirect ke halaman fillform
         }
     }
+
+    public function viewform($formID) //untuk mengisi sebuah form
+    {
+        if(\SSO\SSO::authenticate()){ //jika user terauntetikasi oleh SSO
+			$questions = DB::table('question')->where('form_ID', ''+$formID)->get(); //mengambil list pertanyaan dari sebuah form dengan id $formID
+			
+			return view('view-form', ['questions' => $questions, 'formID' => $formID]); //redirect ke halaman fillform
+        }
+    }
 	
 	public function postForm(Request $request) //untuk memasukan sebuah form ke database
     {

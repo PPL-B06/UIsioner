@@ -48,8 +48,6 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/post-answer', 'FormController@postAnswer');
 	Route::get('/fill-form/{formID}', 'FormController@fillForm');
 	Route::get('/my-forms', 'FormController@getForms');
-	Route::get('/result/{formID}', 'FormController@result');
-	
+	Route::get('/result/{formID}', 'FormController@result');	
 	Route::get('/send', 'EmailController@send');
-});
-
+	Route::get('/view-form/{formID}', 'FormController@viewform');

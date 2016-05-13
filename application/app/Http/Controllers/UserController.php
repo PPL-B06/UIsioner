@@ -57,7 +57,10 @@ class UserController extends Controller{
     }
 
     public function logout(){
-        session()->flush();
+        while(session()->has('npm')){
+            session()->flush();
+            return \Redirect::intended("/logout");
+        }
         \SSO\SSO::logout();
     }
 
@@ -103,6 +106,13 @@ class UserController extends Controller{
     public function showRegistrationForm()
     {
         return view('/register');
+    }
+
+    public function denied()
+    {
+        if(\SSO\SSO::authenticate()){
+            return view('/denied');
+        }
     }
 
     /**

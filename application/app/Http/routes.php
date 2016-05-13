@@ -41,6 +41,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/register', 'UserController@postRegister');
 	Route::get('/login', 'UserController@login');
 	Route::get('/logout', 'UserController@logout');
+	Route::get('/denied', 'UserController@denied');
 	
 	Route::get('/create-form', 'FormController@create');
 	Route::post('/post-form', 'FormController@postForm');
@@ -48,6 +49,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/fill-form/{formID}', 'FormController@fillForm');
 	Route::get('/my-forms', 'FormController@getForms');
 	Route::get('/result/{formID}', 'FormController@result');
+	
+	Route::get('/send', 'EmailController@send');
 });
 
-Route::get('/send', 'EmailController@send');

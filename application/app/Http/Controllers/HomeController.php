@@ -95,8 +95,13 @@ class HomeController extends Controller {
 	
 	public function coinRequest(){ //untuk menampilkan page coin-request (untuk admin)
 		if(\SSO\SSO::authenticate()){
-			$requests = DB::table('coin_request')->get(); //mengambil semua data dari database table coin_request 
-			return view('coin-requests', ['requests' => $requests]); //menampilkan page coin-request (untuk admin), dengan memberi data request semua user
+			if (session()->get('role')=="admin") {
+				$requests = DB::table('coin_request')->get(); //mengambil semua data dari database table coin_request 
+				return view('coin-requests', ['requests' => $requests]); //menampilkan page coin-request (untuk admin), dengan memberi data request semua user
+			}
+			else{
+            	return view('denied');
+			}
 		}
 	}
 	

@@ -32,6 +32,7 @@
               <p>Filled Form: {{ $form->FilledNumber }}/{{ $form->TargetNumber }}</p>
               <p>Number of Questions: {{ $form->QNumber }}</p>
               <p>Rewards: {{ $form->Reward }} Coins</p>
+              <a href="{{ url('/view-form',['formID'=>$form->ID]) }}"><button class="btn btn-default animate pull-right " style="margin-left: 20px">View Form</button></a>
               <a href="{{ url('/result',['formID'=>$form->ID]) }}"><button class="btn btn-default animate pull-right ">See Result</button></a>
               </div>
             </div>

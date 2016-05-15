@@ -55,7 +55,7 @@
         	 </div>
         </div>
     </div>
-	 <footer class="mastfoot">
+	<footer class="mastfoot">
         <div class="inner">
             <p>&copy; 2016 PPL-B06</p>
         </div>

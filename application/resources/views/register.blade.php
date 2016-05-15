@@ -6,14 +6,21 @@
 <link rel="stylesheet" href="{{ url('/resources/assets/css/page.css') }}">
 @stop
 
+@section('active')
+<li><a href="#">Home</a></li>
+<li><a href="faq">FAQ</a></li>  
+@stop
+
 @section('content')
 <div class="container">
     <div class="row">
      <div class="col-md-6 col-xs-8 col-xs-offset-2 col-md-offset-3">
       <div class="panel panel-default reg">
+        <div class="panel-title">
         <h1 class="text-center">Complete your profile
         <img src="resources/assets/images/logo/logo.png" class="img-responsive center-block" width="10%">
         </h1>
+        </div>
         <div class="panel-body">
          
          <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
@@ -35,11 +42,11 @@
              <div class="col-md-10 col-xs-10 col-xs-offset-1">
 
                 @if ($errors->has('email')) 
-                  <span class="help-block"><strong>This data is required</strong></span>
+                  <span class="help-block"><strong class="warning">This data is required</strong></span>
                 @else
                   @if ($errors->has('phone')) 
                   <span class="help-block">
-                    <strong>{{ $errors->first('phone') }}</strong>
+                    <strong class="warning">{{ $errors->first('phone') }}</strong>
                   </span> 
                   @endif 
 

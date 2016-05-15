@@ -15,7 +15,13 @@
   box-shadow: 0px 8px 0px 0px rgba(112,0,0,1);
 }
 
-.btn-default:hover,
+.btn-default:hover{
+  color: #ddd;
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background-color: #900000;
+  border-color: #900000;
+  outline: none !important;
+}
 .btn-default:focus {
   color: #fff;
   text-shadow: none; /* Prevent inheritence from `body` */
@@ -59,6 +65,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  background-position: center;
 }
 body {
   text-align: center;
@@ -139,9 +146,6 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
-.navbar-header{
-   display: inline;
-}
 
 /*
  * Cover
@@ -195,7 +199,7 @@ body {
     width: 100%; /* Must be percentage or pixels for horizontal alignment */
   }
 
-  .icon, .icon2{
+  .icon, .icon2, .icon3{
     width:20%;
   }
 
@@ -226,7 +230,7 @@ body {
   .cover-container {
     width: 100%; /* Must be percentage or pixels for horizontal alignment */
   }
-  .icon, .icon2{
+  .icon, .icon2, .icon3{
     width:28%;
   }
   .masthead-brand {
@@ -248,6 +252,9 @@ body {
   .icon2{
     width:37%;
   }
+  .icon3{
+    width:55%;
+  }
   .masthead-brand {
     width: 17%;
   }
@@ -256,7 +263,7 @@ body {
 
 /*Font
 */
-h1, h2, h3, footer, a, button, .title{
+h1, h2, h3, footer, a, button, .title, .warning{
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -265,21 +272,22 @@ small{
   color: #e8e8e8 !important;
 }
 
-span, input{
+span, input, .text{
   font-family: 'Lato', sans-serif;
 }
 
 .title{
-  margin: 40px 20px;
-
+  margin-bottom: 30px;
 }
+
+
 
 /* panel
 */
 .panel{
   color:#000;
   text-shadow: none;
-  border-radius: 15px;
+  border-radius: 13px;
 }
 
 .reg{
@@ -301,7 +309,7 @@ input:focus{
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075) !important;
 }
 
-strong{
+.warning{
   color: #700000 !important;
   font-size: 16px;
 }

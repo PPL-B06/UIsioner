@@ -16,13 +16,13 @@
       <h4 class="text-uppercase title">My Responses</h4>
       <div class="panel panel-default">
         <div class="panel-body">
-          <ul class="list-group">
             @foreach($resp_forms as $resp_form)
-            <li class="list-group-item">
+            <div class="row">
+            <div class="col-xs-12">
               <h4>{{ $resp_form->Title }} <br/><small>filled on {{ date('l, F jS Y', strtotime($resp_form->Time_Stamp)) }}</small></h4>
-            </li>
+            </div>
             @endforeach
-          </ul>
+            </div>
         </div>
       </div>
       

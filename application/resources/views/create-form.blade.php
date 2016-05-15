@@ -77,7 +77,7 @@
 			</div>
 		  @endif
 		
-			<h5 class="text-uppercase">Create Form</h5>
+			<h4 class="text-uppercase">Create Form</h4>
 
 			<div class="panel panel-default">
 				<div class="panel-body">
@@ -139,8 +139,8 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								<button type="button" onclick="addFields()" class="btn btn-default"><i class="fa fa-plus" aria-hidden="true"></i></button>
-								<button type="button" onclick="deleteFields()" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i> Delete last</button>
+								<button type="button" onclick="addFields()" class="btn btn-default animate"><i class="fa fa-plus" aria-hidden="true"></i></button>
+								<button type="button" onclick="deleteFields()" class="btn btn-default animate"><i class="fa fa-times" aria-hidden="true"></i> Delete last</button>
 							</div>
 						</div>
 						<div class="form-group">
@@ -152,7 +152,7 @@
 						<input type="text" name="hiddencoin" id="hiddencoin" value="{{DB::table('users')->where('NPM','=',session()->get('npm'))->first()->coin}}" hidden>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								<button type="submit" onClick="return submitform();" class="btn btn-lg btn-success pull-right" >Submit</button>
+								<button type="submit" onClick="return submitform();" class="btn btn-lg btn-default animate pull-right" >Submit</button>
 							</div>
 						</div>
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -171,10 +171,11 @@
 			  
 			  <div class="modal-body">
 				
-				<p>Maaf, Coin anda tidak cukup untuk membuat form ini.</p>
-				<p>Coin anda harus sama atau lebih besar dari Reward x Jumlah Target.</p>
+				<p class="warned">Maaf, Coin anda tidak cukup untuk membuat form ini.
+				</br>
+				Coin anda harus sama atau lebih besar dari Reward x Jumlah Target.</p>
 				
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default animate" data-dismiss="modal">Close</button>
 			  </div>
 			  
 			</div>

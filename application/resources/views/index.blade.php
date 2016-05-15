@@ -26,13 +26,14 @@
           {{ $alert }}
         </div>
       @endif
-      <h5 class="text-uppercase">Most Recent Form</h5>
+      <h4 class="text-uppercase title" >Most Recent Form</h4>
       <!--Membuat list form sesuai form yang ada di database-->
       @foreach ($forms as $form)
       <div class="panel panel-default">
         <div class="panel-body">
           
-          <h4>{{ $form->Title }} <small>by {{ DB::table('users')->select('name')->where('NPM','=',$form->NPM)->first()->name }}</small></h4>
+          <h4>{{ $form->Title }} 
+          <br/><small>by {{ DB::table('users')->select('name')->where('NPM','=',$form->NPM)->first()->name }}</small></h4>
 
           <div class="row">
             
@@ -47,9 +48,9 @@
             </div>
 
             <div class="col-md-4">
-              <ul class="list-group">
+              <ul class="list-group text">
                 <li class="list-group-item">
-                  <span class="badge">{{ $form->FilledNumber }} of {{ $form->TargetNumber }}</span>
+                  <span class="badge ">{{ $form->FilledNumber }} of {{ $form->TargetNumber }}</span>
                   Form filled
                 </li>
                 <li class="list-group-item">
@@ -65,11 +66,11 @@
           </div>
 
           @if ($form->FilledNumber >= $form->TargetNumber)
-          <button class="btn btn-success btn-sm pull-right disabled"><i class="fa fa-check" aria-hidden="true"></i> Completed</button>
+          <button class="btn btn-default animate btn-sm pull-right disabled"><i class="fa fa-check" aria-hidden="true"></i> Completed</button>
           @elseif (in_array($form->form_ID, $terisi))
-          <button class="btn btn-default btn-sm pull-right disabled"><i class="fa fa-check" aria-hidden="true"></i> Filled</button>
+          <button class="btn btn-default animate btn-sm pull-right disabled"><i class="fa fa-check" aria-hidden="true"></i> Filled</button>
           @else
-          <a href="{{ url('/fill-form',['formID'=>$form->form_ID]) }}"><button class="btn btn-primary btn-sm pull-right "><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Fill form</button></a>
+          <a href="{{ url('/fill-form',['formID'=>$form->form_ID]) }}"><button class="btn btn-default animate btn-sm pull-right "><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Fill form</button></a>
           @endif  
         </div>
       </div>

@@ -17,9 +17,9 @@
     <div class="col-sm-8 text-left" style="margin-bottom:20px;"> 
       <h5 class="text-uppercase">Results</h5>
       <div class="panel panel-default">
-        <div class="panel-body">
+        <div class="panel-body table-responsive">
           <div id="dvData">
-            <table class="table table-bordered" border="1" id="myTable">
+            <table class="table table-bordered table-striped text" border="1" id="myTable">
               <thead>
                 <th>NPM</th>
                 <th>Nama</th>
@@ -47,7 +47,7 @@
             </table>
           </div>
 
-      <a href="#" id="test" onClick="javascript:fnExcelReport();">download</a>
+      <a href="#" id="test" class="btn btn-default btn-xs animate" onClick="javascript:fnExcelReport();">download</a>
       
         </div>
       </div>

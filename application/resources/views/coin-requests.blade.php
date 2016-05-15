@@ -20,11 +20,11 @@
           	{{ $alert }}
         	</div>
       	@endif
-		<h5 class="text-uppercase">Requests Log</h5>
+		<h4 class="text-uppercase">Requests Log</h4>
 		
 		<div class="panel panel-default">
 			<div class="panel-body table-responsive">
-				<table class="table table-bordered table-striped">
+				<table class="table table-striped text">
 					<thead>
 					  <tr>
 						<th>Date Requested</th>
@@ -43,7 +43,7 @@
 						<td>{{$request->QNumber}}</td>
 						<td>
 						@if($request->status==null)
-						<a href="{{ url('/approve-req',['reqID'=>$request->ID]) }}"><button class="btn btn-primary btn-xs">Approve</button></a>
+						<a href="{{ url('/approve-req',['reqID'=>$request->ID]) }}"><button class="btn btn-default btn-xs animate">Approve</button></a>
 						@else
 						{{'approved'}}
 						@endif

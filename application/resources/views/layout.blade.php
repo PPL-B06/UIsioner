@@ -49,7 +49,7 @@
 		<div class="container">
 			
 			<div class="navbar-header">
-				<a class="navbar-brand" href="{{ url('home') }}">UIsioner</a>
+				<a class="navbar-brand navbar-left" href="{{ url('home') }}"> <img src="resources/assets/images/logo/uisioner-logo.png" class="img-responsive logo-width" alt="UIsioner"></a>
 				<div id="mobile-nav" class="container pull-right">
 					@include('nav-buttons')	
 				</div>
@@ -58,7 +58,7 @@
 				</button>
 			</div>
 
-			<div id="desktop-nav" class="navbar-collapse">
+			<div id="desktop-nav" class="navbar-collapse navbar-right">
 				<div class="pull-right">
 					@include('nav-buttons')
 				</div>
@@ -84,7 +84,7 @@
 				</div>
 				<div class="modal-body">
 					<div class="tabbable"> <!-- Only required for left/right tabs -->
-						<ul class="nav nav-tabs">
+						<ul class="nav nav-tabs text">
 							<li class="active"><a href="#tab1" data-toggle="tab">Add / Coin Redeem</a></li>
 							<li><a href="#tab2" data-toggle="tab">Request Log</a></li>
 						</ul>
@@ -93,26 +93,26 @@
 								<form>
 									<div class="input-group input-group-lg">
 									<!-- <label for="my-coin">Coin anda</label> -->
-									<span class="input-group-addon" id="sizing-addon1">Rp</span>
+									<span class="input-group-addon" id="sizing-addon1">&nbsp<i class="glyphicon glyphicon-copyright-mark"></i></span>
 									<input type="text" class="form-control" placeholder="{{DB::table('users')->where('NPM','=',session()->get('npm'))->first()->coin}}" aria-describedby="sizing-addon1" readonly="">
 									</div>
 								</form>
 
 								<form>
 									<div class="input-group input-group-lg">
-										<span class="input-group-addon" id="sizing-addon1">Rp</span>
+										<span class="input-group-addon txtMont" id="sizing-addon1" style="font-size: 17px">Rp</span>
 										<input type="text" class="form-control" name="qnumber" placeholder="xxx" aria-describedby="sizing-addon1" pattern="^[0-9]{1,11}$" required>
 									</div>
 									<input type="hidden" name="_token" value="{{ csrf_token() }}">
 									<div class="modal-footer">
-										<button type="submit" class="btn btn-primary" formaction="{{ url('/add-coin') }}">Add</button>
-										<button type="submit" class="btn btn-primary" formaction="{{ url('/redeem-coin') }}">Redeem</button>
+										<button type="submit" class="btn btn-default animate" formaction="{{ url('/add-coin') }}">Add</button>
+										<button type="submit" class="btn btn-default animate" formaction="{{ url('/redeem-coin') }}">Redeem</button>
 									</div>
 								</form>
 								
 							</div>
 							<div class="tab-pane" id="tab2">
-								<table class="table table-striped">
+								<table class="table table-striped text">
 									<thead>
 									  <tr>
 										<th>Date Requested</th>
@@ -162,7 +162,7 @@
 
 	<footer class="footer">
 		<div class="container">
-			<p class="text-muted">&copy; 2016 PPL-B06</p>
+			<p class="text-muted txtMont">&copy; 2016 PPL-B06</p>
 		</div>
 	</footer>
 

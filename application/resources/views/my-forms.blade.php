@@ -17,7 +17,7 @@
     </div>
     
     <div class="col-sm-8 text-left" style="margin-bottom:20px;"> 
-      <h5 class="text-uppercase">My Forms</h5>
+      <h4 class="text-uppercase">My Forms</h4>
       <div class="panel panel-default">
         <div class="panel-body">
           <!--Membuat list form sesuai form yang ada di database-->
@@ -32,7 +32,7 @@
               <p>Filled Form: {{ $form->FilledNumber }}/{{ $form->TargetNumber }}</p>
               <p>Number of Questions: {{ $form->QNumber }}</p>
               <p>Rewards: {{ $form->Reward }} Coins</p>
-              <a href="{{ url('/result',['formID'=>$form->ID]) }}"><button class="btn btn-primary pull-right ">See Result</button></a>
+              <a href="{{ url('/result',['formID'=>$form->ID]) }}"><button class="btn btn-default animate pull-right ">See Result</button></a>
               </div>
             </div>
             <hr>

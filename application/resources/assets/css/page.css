@@ -1,26 +1,202 @@
-/* Sticky footer styles
--------------------------------------------------- */
+
 html {
-  position: relative;
-  min-height: 100%;
+  height: 100%;
 }
+
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  height: 100%;
+  background-color: #F4F5EE !important;
 }
+
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #f5f5f5;
+  bottom: 0px;
+  width: 100% !important;
+  height: 36px;
+  background-color: #900000;
+  border-color: #700000;
+  -webkit-box-shadow: inset 0px 0px 52px 2px rgba(112,0,0,1);
+  -moz-box-shadow: inset 0px 0px 52px 2px rgba(112,0,0,1);
+  box-shadow: inset 0px 0px 52px 2px rgba(112,0,0,1);
+}
+
+.txtFoot{
+  color: rgba(255,255,255,.6);
+}
+.navbar{
+  background-color: #900000;
+  border-color: #700000;
+  -webkit-box-shadow: inset 0px 0px 52px 2px rgba(112,0,0,1), 0px 8px 0px 0px rgba(112,0,0,1);
+  -moz-box-shadow: inset 0px 0px 52px 2px rgba(112,0,0,1), 0px 8px 0px 0px rgba(112,0,0,1);
+  box-shadow: inset 0px 0px 52px 2px rgba(112,0,0,1), 0px 8px 0px 0px rgba(112,0,0,1);
+}
+
+/* Custom default button */
+.btn-default{
+  color: #fff;
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background-color: #900000;
+  border-color: #900000;
+   outline: none !important;
+  -webkit-box-shadow: 0px 5px 0px 0px rgba(112,0,0,1);
+  -moz-box-shadow: 0px 5px 0px 0px rgba(112,0,0,1);
+  box-shadow: 0px 5px 0px 0px rgba(112,0,0,1);
+}
+
+.btn-default:hover{
+  color: #ddd;
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background-color: #900000;
+  border-color: #900000;
+  outline: none !important;
+}
+.btn-default:focus {
+  color: #fff;
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background-color: #900000;
+  border-color: #900000;
+   outline: none !important;
+}
+
+.btn-default:active{
+  color: #fff !important;
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background-color: #900000 !important;
+  border-color: #900000 !important;
+   outline: none !important;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-transform: translate(0,5px);
+  -moz-transform: translate(0,5px);
+  -o-transform: translate(0,5px);
+  -ms-transform: translate(0,5px);
+  transform: translate(0,5px);
+}
+
+.btn.disabled{
+  opacity: 1;
+  background-color: #700000 !important;
+  border-color: #700000 !important;
+}
+
+/*
+ * Dropdown button
+ */
+.open>.dropdown-toggle.btn-default.focus, .open>.dropdown-toggle.btn-default:focus, .open>.dropdown-toggle.btn-default{
+  color: #fff;
+  background-color: #700000;
+  border-color: #700000;
+}
+
+.dropdown-toggle:active{
+  color: #fff !important;
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background-color: #700000 !important;
+  border-color: #700000 !important;
+   outline: none !important;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-transform: translate(5,0px);
+  -moz-transform: translate(5,0px);
+  -o-transform: translate(5,0px);
+  -ms-transform: translate(5,0px);
+  transform: translate(5,0px);
+}
+
+.open>.dropdown-toggle.btn-default:hover{
+  color: #ddd;
+  background-color: #700000;
+  border-color: #700000;
+}
+
+.animate
+{
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+}
+
+/* panel
+*/
+.panel{
+  color:#000;
+  text-shadow: none;
+  border-radius: 13px;
+  margin-bottom: 7px; 
+}
+
+.badge{
+  background-color: #900000;
+}
+
+label{
+  font-size: 15px !important;
+}
+
+/*
+ * Modal
+ */
+.modal-content{
+  border-radius: 13px !important;
+}
+
+li > .active{
+  background: #700000;
+}
+
+a{
+  color: #700000;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+  border: 2px solid #700000 !important;
+  border-bottom: 1px solid #fff !important;
+}
+
+.form-control{
+  box-shadow: none;
+}
+
+.nav-tabs>li>a:hover{
+  color: #700000;
+  background-color: #fff !important;
+  border: 2px solid #900000 !important;
+  border-bottom: 1px solid #fff !important;
+}
+
+.input-group-addon{
+  background-color: #700000;
+  color: #fff;
+  border: none !important;
+}
+
+.nav-tabs{
+  border-bottom: 2px solid #700000 !important;
+}
+
+.input-group{
+  border-radius: 0px !important;
+}
+
+input:focus{ 
+  outline: none !important;
+  border: 1px solid #700000 !important;
+  box-shadow: 0 0 5px #900000 !important;
+}
+
+thead{
+  background-color: #700000;
+  color: #fff;
+}
+
+
+.warned{
+  font-size: 16px;
 }
 
 
 /* Custom page CSS
 -------------------------------------------------- */
-/* Not required for template or sticky footer method. */
 
 body {
   background-color: #e9eaed;
@@ -29,15 +205,84 @@ body {
 body > .container {
   padding: 60px 15px 0;
 }
-.container .text-muted {
-  margin: 20px 0;
-}
 
 .footer > .container {
+  padding-top: 6px;
   padding-right: 15px;
   padding-left: 15px;
 }
 
 code {
   font-size: 80%;
+}
+
+.navbar-brand{
+  margin-top: -10px;
+}
+
+.title{
+  margin-top: 25px;
+}
+
+/*
+ * Font
+ */
+.navbar, .txtMont, h4, .btn-default, .nav-tabs, .warned, .alert, thead {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+p, small, .text, input, .form-group{
+  font-family: 'Lato', sans-serif !important;
+}
+
+
+/*
+ * Affix and center
+ */
+@media (min-width: 320px) {
+
+  /* Start the vertical centering */
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
+
+  /* Handle the widths */
+  .cover-container {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+  }
+
+  .navbar-brand{
+    float: left;
+    width: 110px;
+  }
+
+  
+}
+
+@media (min-width: 768px) {
+  /* Start the vertical centering */
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
+  /* Handle the widths */
+  .cover-container {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+  }
+
+  .navbar-brand {
+    float: left;
+    width: 22% ;
+  }
+
+
+}
+
+@media (min-width: 992px) {
+
+  .cover-container{
+    width: 100%;
+  }
+  .navbar-brand {
+    width: 22%;
+  }
 }

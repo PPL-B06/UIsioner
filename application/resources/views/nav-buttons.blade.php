@@ -1,7 +1,7 @@
-<a href="{{ url('create-form') }}"><button type="button" class="btn btn-primary navbar-btn"><i class="fa fa-plus fa-lg" aria-hidden="true"></i> <span id="button-text">Create form</span></button></a>
+<a href="{{ url('create-form') }}"><button type="button" class="btn btn-default animate navbar-btn"><i class="fa fa-plus fa-lg" aria-hidden="true" title="Create form"></i> <span id="button-text">Create form</span></button></a>
 
 <div class="btn-group">
-	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-caret-down fa-lg"></i></span></button>
+	<button type="button" class="btn btn-default animate dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-caret-down fa-lg"></i></span></button>
 	
 	<ul class="dropdown-menu dropdown-menu-right">
 		@if(session()->get('role') == 'admin')

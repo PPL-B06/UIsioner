@@ -20,7 +20,7 @@
           	{{ $alert }}
         	</div>
       	@endif
-		<h4 class="text-uppercase">Requests Log</h4>
+		<h4 class="text-uppercase title">Requests Log</h4>
 		
 		<div class="panel panel-default">
 			<div class="panel-body table-responsive">

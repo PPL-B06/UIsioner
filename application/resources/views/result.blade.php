@@ -15,7 +15,7 @@
     </div>
   
     <div class="col-sm-8 text-left" style="margin-bottom:20px;"> 
-      <h5 class="text-uppercase">Results</h5>
+      <h4 class="text-uppercase title">Results</h4>
       <div class="panel panel-default">
         <div class="panel-body table-responsive">
           <div id="dvData">

@@ -13,15 +13,17 @@
     <div class="col-sm-2 sidenav hidden-xs"></div>
 
     <div class="col-sm-8 text-left" style="margin-bottom:20px;">
-      <h4 class="text-uppercase">My Responses</h4>
+      <h4 class="text-uppercase title">My Responses</h4>
       <div class="panel panel-default">
-        <ul class="list-group">
-          @foreach($resp_forms as $resp_form)
-          <li class="list-group-item">
-            <h4>{{ $resp_form->Title }} <small>filled on {{ date('l, F jS Y', strtotime($resp_form->Time_Stamp)) }}</small></h4>
-          </li>
-          @endforeach
-        </ul>
+        <div class="panel-body">
+          <ul class="list-group">
+            @foreach($resp_forms as $resp_form)
+            <li class="list-group-item">
+              <h4>{{ $resp_form->Title }} <br/><small>filled on {{ date('l, F jS Y', strtotime($resp_form->Time_Stamp)) }}</small></h4>
+            </li>
+            @endforeach
+          </ul>
+        </div>
       </div>
       
       

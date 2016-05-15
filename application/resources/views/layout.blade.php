@@ -18,10 +18,8 @@
     <!-- Font Awesome -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet">
 
-    <link rel="icon" href="resources/assets/images/logo/logo.png">
-
-    <link href='https://fonts.googleapis.com/css?family=Cabin:600|Catamaran:700' rel='stylesheet' type='text/css'>
-	
+    <link rel="icon" href="{{{ asset('resources/assets/images/logo/logo.png') }}}">
+	<link href='https://fonts.googleapis.com/css?family=Montserrat|Lato:300' rel='stylesheet' type='text/css'>
 	<style>
 		@media screen and (min-width: 767px) {
 		    #mobile-nav {
@@ -49,7 +47,7 @@
 		<div class="container">
 			
 			<div class="navbar-header">
-				<a class="navbar-brand navbar-left" href="{{ url('home') }}"> <img src="resources/assets/images/logo/uisioner-logo.png" class="img-responsive logo-width" alt="UIsioner"></a>
+				<a class="navbar-brand navbar-left" href="{{ url('home') }}"> <img src="{{{ asset('resources/assets/images/logo/uisioner-logo.png') }}}" class="img-responsive logo-width" alt="UIsioner"></a>
 				<div id="mobile-nav" class="container pull-right">
 					@include('nav-buttons')	
 				</div>

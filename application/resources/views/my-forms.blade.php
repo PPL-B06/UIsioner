@@ -17,7 +17,7 @@
     </div>
     
     <div class="col-sm-8 text-left" style="margin-bottom:20px;"> 
-      <h4 class="text-uppercase">My Forms</h4>
+      <h4 class="text-uppercase title">My Forms</h4>
       <div class="panel panel-default">
         <div class="panel-body">
           <!--Membuat list form sesuai form yang ada di database-->

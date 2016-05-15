@@ -18,7 +18,7 @@
     <!-- Font Awesome -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet">
 
-    <link rel="icon" href="resources/assets/images/logo/logo.png">
+    <link rel="icon" href="{{{ asset('resources/assets/images/logo/logo.png') }}}">
 
     <link rel="stylesheet" href="{{ url('/resources/assets/css/cover-page.css') }}">
     <link href='https://fonts.googleapis.com/css?family=Montserrat|Lato:300' rel='stylesheet' type='text/css'>
@@ -38,7 +38,7 @@
 			                    <span class="icon-bar"></span>                        
 			                </button>      
 			                <a class="masthead-brand navbar-left" href="welcome">
-			                    <img src="resources/assets/images/logo/uisioner-logo.png" class="img-responsive logo-width" alt="UIsioner">
+			                    <img src="{{{ asset('resources/assets/images/logo/uisioner-logo.png') }}}" class="img-responsive logo-width" alt="UIsioner">
 			                </a>
 			               
 			            </div>

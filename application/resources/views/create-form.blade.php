@@ -77,7 +77,7 @@
 			</div>
 		  @endif
 		
-			<h4 class="text-uppercase">Create Form</h4>
+			<h4 class="text-uppercase title">Create Form</h4>
 
 			<div class="panel panel-default">
 				<div class="panel-body">

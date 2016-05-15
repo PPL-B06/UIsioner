@@ -79,6 +79,12 @@ body {
   border-color: #700000 !important;
 }
 
+.animate
+{
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+}
+
 /*
  * Dropdown button
  */
@@ -131,6 +137,10 @@ body {
 
 label{
   font-size: 15px !important;
+}
+
+.list-group-item{
+  border:none;
 }
 
 /*
@@ -189,7 +199,6 @@ thead{
   color: #fff;
 }
 
-
 .warned{
   font-size: 16px;
 }
@@ -227,7 +236,7 @@ code {
 /*
  * Font
  */
-.navbar, .txtMont, h4, .btn-default, .nav-tabs, .warned, .alert, thead {
+.navbar, .txtMont, h4, .btn-default, .nav-tabs, .warned, .alert, thead, h3 {
   font-family: 'Montserrat', sans-serif !important;
 }
 

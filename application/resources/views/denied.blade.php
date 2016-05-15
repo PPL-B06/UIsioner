@@ -14,12 +14,10 @@
       <p><a href="#">Link</a></p>
       <p><a href="#">Link</a></p>-->
     </div>
-    <div class="col-sm-8 text-left" style="margin-bottom:20px;">
-		<div class="panel panel-default">
-			<div class="panel-body table-responsive">
-				<h3>Access Denied</h3>
-			</div>
-		</div>
+    <div class="col-sm-8 text-center" style="margin-bottom:20px;">
+  		<div class="alert alert-danger" style="margin-top:20px;">
+  		    <h3>Access Denied</h3>
+  		</div>
     </div>
     <div class="col-sm-2 sidenav">
       <!--<div class="well">

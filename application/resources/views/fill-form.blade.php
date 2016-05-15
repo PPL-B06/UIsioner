@@ -16,7 +16,7 @@
     </div>
     
     <div class="col-sm-8 text-left" style="margin-bottom:20px;"> 
-      <h4 class="text-uppercase">Fill Form</h4>
+      <h4 class="text-uppercase title">Fill Form</h4>
     	<div class="panel panel-default">
         <div class="panel-body">
           <form role="form" method="POST" action="{{ url('/post-answer') }}">

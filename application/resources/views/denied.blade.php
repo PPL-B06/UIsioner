@@ -16,7 +16,7 @@
     </div>
     <div class="col-sm-8 text-center" style="margin-bottom:20px;">
   		<div class="alert alert-danger" style="margin-top:20px;">
-  		    <h3>Access Denied</h3>
+  		    <h3 style="margin-top:10px;">Access Denied</h3>
   		</div>
     </div>
     <div class="col-sm-2 sidenav">

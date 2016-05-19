@@ -72,7 +72,7 @@
 
 	    <div class="col-sm-8 text-left" style="margin-bottom:20px;">
 		  @if ($alert = Session::get('alert'))
-			<div class="alert alert-warning">
+			<div class="alert alert-warning alert-def">
 			  {{ $alert }}
 			</div>
 		  @endif

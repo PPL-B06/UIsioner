@@ -9,12 +9,8 @@
 @section('content')
 <div class="container text-center">    
   <div class="row content">
-    
-    <div class="col-sm-2 sidenav hidden-xs">
-    
-    </div>
   
-    <div class="col-sm-8 text-left" style="margin-bottom:20px;"> 
+    <div class="col-sm-12 text-left" style="margin-bottom:20px;"> 
       <h4 class="text-uppercase title">Results</h4>
       <div class="panel panel-default">
         <div class="panel-body table-responsive">
@@ -52,15 +48,6 @@
         </div>
       </div>
       
-    </div>
-    <!--Membuat list form sesuai form yang ada di database-->
-    <div class="col-sm-2 sidenav">
-    <!--<div class="well">
-    <p>ADS</p>
-    </div>
-    <div class="well">
-    <p>ADS</p>
-    </div>-->
     </div>
 
   </div>

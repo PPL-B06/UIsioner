@@ -21,7 +21,7 @@
     <link rel="icon" href="{{{ asset('resources/assets/images/logo/logo.png') }}}">
 
     <link rel="stylesheet" href="{{ url('/resources/assets/css/cover-page.css') }}">
-    <link href='https://fonts.googleapis.com/css?family=Montserrat|Lato:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat|Lato:400' rel='stylesheet' type='text/css'>
 	@yield('custom-styles')
 
 </head>

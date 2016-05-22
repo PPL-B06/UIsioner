@@ -6,6 +6,7 @@
 	<ul class="dropdown-menu dropdown-menu-right">
 		@if(session()->get('role') == 'admin')
 		<li><a href="{{ url('coin-requests') }}">Coin requests</a></li>
+		<li><a href="{{ url('email-blast') }}">Email blast</a></li>
 		<li role="separator" class="divider"></li>
 		@endif
 		<li><a href="{{ url('my-forms') }}">My forms</a></li>

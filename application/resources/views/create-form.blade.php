@@ -85,31 +85,31 @@
 						<div id="formulir">
 					  
 							<div class="form-group">
-								<label class="control-label col-sm-2" for="title">Title</label>
+								<label class="control-label col-sm-2" for="title"><strong>Title</strong></label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" pattern="([\32-\x7E]){1,127}$" required>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-sm-2" for="title">Description</label>
+								<label class="control-label col-sm-2" for="title"><strong>Description</strong></label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" name="description" id="description" placeholder="Enter Description" required>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-sm-2" for="title">Target Number</label>
+								<label class="control-label col-sm-2" for="title"><strong>Target Number</strong></label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" name="targetnumber" id="targetnumber" placeholder="Enter Target Number" pattern="^[0-9]{1,11}$" required>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-sm-2" for="title">Reward</label>
+								<label class="control-label col-sm-2" for="title"><strong>Reward</strong></label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" name="reward" id="reward" placeholder="Enter Reward" pattern="^[0-9]{1,11}$" required>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-sm-2">Target</label>
+								<label class="control-label col-sm-2"><strong>Target</strong></label>
 								<div class="col-sm-10">
 									<div class="checkbox"><label><input type="checkbox" name="tar0" value="01">Fakultas Kedokteran</label></div>
 									<div class="checkbox"><label><input type="checkbox" name="tar1" value="02">Fakultas Kedokteran Gigi</label></div>
@@ -131,7 +131,7 @@
 							</div>
 							<hr>
 							<div class="form-group">
-								<label class="control-label col-sm-2" for="1">Question 1</label>
+								<label class="control-label col-sm-2" for="1"><strong>Question 1</strong></label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" name="1" id="1" placeholder="Enter question" pattern="([\32-\x7E]){1,127}$" required>
 								</div>
@@ -145,7 +145,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								<div class="checkbox"><label><input type="checkbox" required> I'm sure this is complete</label></div>
+								<div class="checkbox"><label><strong><input type="checkbox" required> I'm sure this is complete</strong></label></div>
 							</div>
 						</div>
 						<input type="text" name="qnumber" id="qnumber" value="1" hidden required>

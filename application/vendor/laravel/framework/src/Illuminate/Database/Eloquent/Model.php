@@ -823,7 +823,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
         // If the type value is null it is probably safe to assume we're eager loading
         // the relationship. When that is the case we will pass in a dummy query as
         // there are multiple types in the morph and we can't use single queries.
-        if (is_null($class = $this->$type)) {
+        if (empty($class = $this->$type)) {
             return new MorphTo(
                 $this->newQuery(), $this, $id, null, $type, $name
             );
@@ -2282,11 +2282,11 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 
         static::unguard();
 
-        $result = $callback();
-
-        static::reguard();
-
-        return $result;
+        try {
+            return $callback();
+        } finally {
+            static::reguard();
+        }
     }
 
     /**
@@ -2626,16 +2626,14 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
         // an appropriate native PHP type dependant upon the associated value
         // given with the key in the pair. Dayle made this comment line up.
         if ($this->hasCast($key)) {
-            $value = $this->castAttribute($key, $value);
+            return $this->castAttribute($key, $value);
         }
 
         // If the attribute is listed as a date, we will convert it to a DateTime
         // instance on retrieval, which makes it quite convenient to work with
         // date fields without having to create a mutator for each property.
-        elseif (in_array($key, $this->getDates())) {
-            if (! is_null($value)) {
-                return $this->asDateTime($value);
-            }
+        if (in_array($key, $this->getDates()) && ! is_null($value)) {
+            return $this->asDateTime($value);
         }
 
         return $value;
@@ -2694,7 +2692,9 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
                 .'Illuminate\Database\Eloquent\Relations\Relation');
         }
 
-        return $this->relations[$method] = $relations->getResults();
+        $this->setRelation($method, $results = $relations->getResults());
+
+        return $results;
     }
 
     /**
@@ -3082,7 +3082,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      *
      * @param  string|null  $key
      * @param  mixed  $default
-     * @return array
+     * @return mixed|array
      */
     public function getOriginal($key = null, $default = null)
     {
@@ -3453,15 +3453,22 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
     }
 
     /**
-     * Determine if an attribute exists on the model.
+     * Determine if an attribute or relation exists on the model.
      *
      * @param  string  $key
      * @return bool
      */
     public function __isset($key)
     {
-        return (isset($this->attributes[$key]) || isset($this->relations[$key])) ||
-                ($this->hasGetMutator($key) && ! is_null($this->getAttributeValue($key)));
+        if (isset($this->attributes[$key]) || isset($this->relations[$key])) {
+            return true;
+        }
+
+        if (method_exists($this, $key) && $this->$key && isset($this->relations[$key])) {
+            return true;
+        }
+
+        return $this->hasGetMutator($key) && ! is_null($this->getAttributeValue($key));
     }
 
     /**

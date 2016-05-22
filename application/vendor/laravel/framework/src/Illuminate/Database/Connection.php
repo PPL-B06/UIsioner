@@ -516,13 +516,20 @@ class Connection implements ConnectionInterface
      * Start a new database transaction.
      *
      * @return void
+     * @throws Exception
      */
     public function beginTransaction()
     {
         ++$this->transactions;
 
         if ($this->transactions == 1) {
-            $this->getPdo()->beginTransaction();
+            try {
+                $this->getPdo()->beginTransaction();
+            } catch (Exception $e) {
+                --$this->transactions;
+
+                throw $e;
+            }
         } elseif ($this->transactions > 1 && $this->queryGrammar->supportsSavepoints()) {
             $this->getPdo()->exec(
                 $this->queryGrammar->compileSavepoint('trans'.$this->transactions)
@@ -628,6 +635,10 @@ class Connection implements ConnectionInterface
         try {
             $result = $this->runQueryCallback($query, $bindings, $callback);
         } catch (QueryException $e) {
+            if ($this->transactions >= 1) {
+                throw $e;
+            }
+
             $result = $this->tryAgainIfCausedByLostConnection(
                 $e, $query, $bindings, $callback
             );

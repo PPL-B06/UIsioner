@@ -26,6 +26,11 @@
           {{ $alert }}
         </div>
       @endif
+      @if ($alert = Session::get('alert-info'))
+        <div class="alert alert-info alert-def">
+          {{ $alert }}
+        </div>
+      @endif
       <h4 class="text-uppercase title" >Most Recent Form</h4>
       <!--Membuat list form sesuai form yang ada di database-->
       @foreach ($forms as $form)

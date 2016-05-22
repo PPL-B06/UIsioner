@@ -11,7 +11,7 @@
     
     @foreach ($array as $key => $value)
 	    @if($value > 0)
-    		tersedia kuesioner dari {{ $key }} : sebanyak {{ $value }} <br>
+    		tersedia kuesioner untuk {{ $key }} sejumlah {{ $value }} form.<br>
 	    @endif
     @endforeach
 </div>

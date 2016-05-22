@@ -11,8 +11,9 @@ use App\Http\Controllers\Controller;
 
 class EmailController extends Controller
 {
-    public function send(Request $request){
+    public function blast(Request $request){
         if(\SSO\SSO::authenticate()){
+        	// cek apakah authenticated user adalah admin
             if (session()->get('role')=="admin"){
                 // kode dan nama fakultas yang berada di SSO
                 $codeOrg = array(
@@ -32,7 +33,7 @@ class EmailController extends Controller
                     "15" => "VOKASI",
                     "16" => "PEROLEHAN KREDIT",
                     "17" => "FARMASI"
-                    );
+                );
 
                 // inisiasi array yang berisi kumpulan form yang ingin dilakukan blast email berdasarkan fakultas
                 $emailBlast = [];
@@ -47,12 +48,20 @@ class EmailController extends Controller
                 }
 
                 // jika array emailBlast tidak kosong, lakukan kirim email
-                if(!empty($emailBlast)){
+                if(empty($emailBlast)){
+                	// redirect menuju page home dan menampilkan info.
+                	return \Redirect::intended("/home")->with('alert-info','Belum ada form yang bisa dilakukan blast email.');
+                }else{
+                	/*
+                	// dummy
                     $values = array(
-                        "ilham907"=>"ilham907@gmail.com",
-                        "ilhamline" => "ilhamline8@gmail.com",
-                        "ilham kurniawan" => "ilhamkurni@gmail.com"
+                        "Ilham Kurniawan" => "ilhamkurni@gmail.com"
+                        "Hasandi Patriawan" => "sandi.patriawan@gmail.com"
                     );
+                    */
+
+                    // get array of column name & email in table user
+                    $values = DB::table('users')->pluck('email', 'name');
 
                     // lakukan iterasi sebanyak isi dari array values
                     foreach ($values as $name => $email) {
@@ -63,7 +72,7 @@ class EmailController extends Controller
                         // sub = email subject
                         // web = variable yang dipakai di view
 
-                        $sub = "Hi {$name}! Yuk isi form baru di UIsioner :) (final)";
+                        $sub = "Hi {$name}! Yuk isi form baru di UIsioner :)";
 
                         Mail::send('emails.blast', ['array' => $emailBlast], function ($message) use ($name,$values,$sub) {
                             $message->from('uisioner@gmail.com', 'Admin UIsioner');
@@ -73,10 +82,12 @@ class EmailController extends Controller
                     // ubah variabel boosted menjadi 1, karena email sudah berhasil terkirim
                     DB::table('form')->update(['form.boosted' => 1]);
 
-                    return "Your email has been sent successfully";
+                    // redirect menuju page home dan menampilkan pesan sukses.
+					return \Redirect::intended("/home")->with('alert-success','Selamat! Email blast berhasil dilakukan.');
                 }
             }
             else{
+            	// redirect menuju page access denied.
                 return view('denied');
             }
         }

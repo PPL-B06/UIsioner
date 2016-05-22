@@ -42,7 +42,7 @@
 
 </head>
 <body>
-
+<div class="content">
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			
@@ -157,7 +157,7 @@
     <!-- ini akhir modal -->
 	
 	@yield('content')
-
+</div>
 	<footer class="footer">
 		<div class="container">
 			<p class="text-muted txtMont">&copy; 2016 PPL-B06</p>

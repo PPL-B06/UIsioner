@@ -8,7 +8,19 @@ body {
   background-color: #F4F5EE !important;
 }
 
-.footer {
+.content{
+  min-height: 100%;
+  margin-top: 30px;
+  /* equal to footer height */
+  margin-bottom: 36px;
+}
+
+.content:after {
+  content: "";
+  display: none;
+}
+
+.footer, .content:after { 
   bottom: 0px;
   width: 100% !important;
   height: 36px;

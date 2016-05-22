@@ -58,11 +58,11 @@
 		<div class="panel panel-default">
 	        <div class="panel-body">
 				<br/>
-		        <h3 style="margin-bottom:20px;">Halo Nayana Taradhanti Hodi!</h3>
+		        <h3 style="margin-bottom:20px;">Halo {{$data[1]}}!</h3>
 				<h4>Kami ingin memberi tahu bahwa terdapat kuesioner baru yang dapat anda isi!
 				<p>Berikut ini adalah list kuesioner yang tersedia:</p></h4>
 				
-				 @foreach ($array as $key => $value)
+				 @foreach ($data[0] as $key => $value)
 				    @if($value > 0)
 				    	<p class="text">
 			    		<strong>{{ $value }}</strong> form baru untuk kamu yang merupakan mahasiswa<strong> {{ $key }}</strong>.<br>

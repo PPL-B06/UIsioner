@@ -62,6 +62,7 @@ class EmailController extends Controller
 
                     // get array of column name & email in table user
                     $values = DB::table('users')->pluck('email', 'name');
+                    $data[0] = $emailBlast;
 
                     // lakukan iterasi sebanyak isi dari array values
                     foreach ($values as $name => $email) {
@@ -73,8 +74,9 @@ class EmailController extends Controller
                         // web = variable yang dipakai di view
 
                         $sub = "Hi {$name}! Yuk isi form baru di UIsioner :)";
+                        $data[1] = $name;
 
-                        Mail::send('emails.blast', ['array' => $emailBlast], function ($message) use ($name,$values,$sub) {
+                        Mail::send('emails.blast', ['data' => $data], function ($message) use ($name,$values,$sub) {
                             $message->from('uisioner@gmail.com', 'Admin UIsioner');
                             $message->to($values[$name])->subject($sub);
                         });

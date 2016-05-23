@@ -98,8 +98,8 @@
 
 								<form>
 									<div class="input-group input-group-lg">
-										<span class="input-group-addon txtMont" id="sizing-addon1" style="font-size: 17px">Rp</span>
-										<input type="text" class="form-control text" name="qnumber" placeholder="xxx" aria-describedby="sizing-addon1" pattern="^[0-9]{1,11}$" required>
+										<span class="input-group-addon" id="sizing-addon1">&nbsp<i class="glyphicon glyphicon-copyright-mark"></i></span>
+										<input type="text" class="form-control text" name="qnumber" placeholder="0" aria-describedby="sizing-addon1" pattern="^[0-9]{1,11}$" required>
 									</div>
 									<input type="hidden" name="_token" value="{{ csrf_token() }}">
 									<div class="modal-footer">

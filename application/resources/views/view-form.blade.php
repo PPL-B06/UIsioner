@@ -27,7 +27,7 @@
   <input type="text" name="formID" value="{{ $formID }}" hidden>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-lg btn-success pull-right" disabled>Submit</button>
+       <button type="submit" class="btn btn-default animate pull-right" disabled>Submit</button>
     </div>
   </div>
   <input type="hidden" name="_token" value="{{ csrf_token() }}">
